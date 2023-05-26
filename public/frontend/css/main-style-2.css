@@ -1,0 +1,91 @@
+@font-face {
+    font-family: baloo-regular;
+    src: url(../fonts/Baloo2-Regular.ttf);
+}
+
+@font-face {
+    font-family: baloo-medium;
+    src: url(../fonts/Baloo2-Medium.ttf);
+}
+
+@font-face {
+    font-family: baloo-semibold;
+    src: url(../fonts/Baloo2-SemiBold.ttf);
+}
+
+
+@font-face {
+    font-family: baloo-bold;
+    src: url(../fonts/Baloo2-Bold.ttf);
+}
+
+/* Misc style */
+body {
+    font-family: baloo-regular;
+    background-color: #F6F6F6;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.font-title {
+    font-family: baloo-bold;
+}
+
+.font-medium {
+    font-family: baloo-medium;
+}
+
+.font-semibold {
+    font-family: baloo-semibold;
+}
+
+/* Header */
+.top-bar-link i {
+    width: 30px;
+    height: 30px;
+    border: 1.5px solid #fff;
+}
+
+.logo-nav {
+    height: 35px;
+}
+
+.navbar-nav .nav-link.active {
+    color: #41A03A !important;
+    font-size: 20px !important;
+    font-family: baloo-semibold;
+}
+
+.navbar-nav .nav-link {
+    padding: 0;
+}
+
+.navbar-nav .nav-item:last-child .nav-link {
+    padding-right: 0 !important;
+}
+
+/* Home */
+
+.introduce-content {
+    margin-top: -4rem;
+}
+
+.btn-play {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Footer */
+.footer-form-bg{
+    background-image: url(../img/sign-up-footer-bg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.footer-bottom-info-logo{
+    height: 45px;
+}

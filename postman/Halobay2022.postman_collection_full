@@ -1,0 +1,1744 @@
+{
+	"info": {
+		"_postman_id": "8298391d-4176-468a-b048-9c4a4af6c735",
+		"name": "Halobay2022",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2418943"
+	},
+	"item": [
+		{
+			"name": "dang-ki-nhan-tin",
+			"item": [
+				{
+					"name": "Đăng ký nhận tin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customerName\": \"Nguyễn Văn A\",\r\n    \"customerEmail\": \"anv@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/register-for-news/guest/create",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"register-for-news",
+								"guest",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tin tuc",
+			"item": [
+				{
+					"name": "Danh-muc-tin-tuc",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/client/new-categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"new-categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lay-ds-tin-theo-danh-muc",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/client/news/categories?categoryId=1&page=0&itemPerPage=5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"news",
+								"categories"
+							],
+							"query": [
+								{
+									"key": "categoryId",
+									"value": "1",
+									"description": "Id của danh mục"
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"description": "trang"
+								},
+								{
+									"key": "itemPerPage",
+									"value": "5",
+									"description": "so item cua moi trang"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "chi-tiet-bai-viet",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/client/news/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"news",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "vietnam-airlines-bay-thang-den-san-francisco"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Thông tin chung",
+			"item": [
+				{
+					"name": "dieu-khoan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://103.78.88.26:8080/api/web-contents/searchbycode?code=DIEU-KHOAN-SU-DUNG",
+							"protocol": "http",
+							"host": [
+								"103",
+								"78",
+								"88",
+								"26"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"web-contents",
+								"searchbycode"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "DIEU-KHOAN-SU-DUNG"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dia-chi-cong-ty",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://103.78.88.26:8080/api/web-contents/searchbycode?code=DIA-CHI-CONG-TY",
+							"protocol": "http",
+							"host": [
+								"103",
+								"78",
+								"88",
+								"26"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"web-contents",
+								"searchbycode"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "DIA-CHI-CONG-TY"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "chinh-sach-bao-mat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/web-contents/searchbycode?code=CHINH-SACH-BAO-MAT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"web-contents",
+								"searchbycode"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "CHINH-SACH-BAO-MAT"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fanpage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/web-contents/searchbycode?code=FANPAGE-FACEBOOK",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"web-contents",
+								"searchbycode"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "FANPAGE-FACEBOOK"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tai-khoan",
+			"item": [
+				{
+					"name": "get-user-by-login",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJidGRhdDE5ODhAZ21haWwuY29tIiwiYXV0aE1lbnUiOiJRVUFOX0xZX1RBSV9LSE9BTixEQU5IX01VQ19RVU9DX0dJQSxEQU5IX01VQ19ESUVNX0RFTixEQU5IX01VQ19MT0FJX0hJTkhfRFVfTElDSCxEQU5IX01VQ19IT0FUX0RPTkdfREwsREFOSF9NVUNfVkFUX0RVTkdfQ0FOX01BTkcsUVVBTl9MWV9UT1VSX0RMLEtIQUNIX0hBTkdfREFUX1RPVVIsS0hBQ0hfSEFOR19EQVRfVE9VUiIsImV4cCI6MTYxODMwMjY1N30.XKWXJ5jP5vA1fql2RZL0c7bPtqSuiGuFgHTjfXHA2F_IFO4NLECJf302G59l341ESLXVV5XGin7lSKBk1hgtzg",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/app-users/get-profile-by-login?login=btdat1988@gmail.com",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"app-users",
+								"get-profile-by-login"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "btdat1988@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "obj",
+									"value": "{\"id\":61,\"login\":\"thinhtd@gmail.com\",\"firstName\":null,\"lastName\":null,\"fullName\":\"Tran Thinh1\",\"email\":\"thinhtd789@gmail.com\",\"phone\":\"0977956784\"}",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/E:/OneDrive/Desktop/1.jpg"
+								},
+								{
+									"key": "fileDocument",
+									"type": "file",
+									"src": "/E:/OneDrive/Desktop/1.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/app-users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"app-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dangki",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "obj",
+									"value": "{\n\n    \"id\":null,\n    \"login\":\"tesetsetset1122@gmail.com\",\n    \"firstName\":null,\n    \"lastName\":null,\n    \"fullName\":\"tran duc thinh\",\n    \"email\":\"tesetsetset1122@gmail.com\",\n    \"phone\":\"097343452423\",\n    \"passpostId\":null,\n    \"companyName\":null,\n    \"position\":null,\n    \"taxCode\":null,\n    \"userType\":1,\n    \"address\":null,\n    \"sex\":null,\n    \"imageUrl\":null,\n    \"activated\":1,\n    \"appUserContract\":{\n        \"id\":6,\n        \"userId\":\"tesetsetset@gmail.com\",\n        \"dateContract\":\"2021-03-09\",\n        \"methodPayment\":1,\n        \"bank\":null,\n        \"bankNumber\":null\n    },\n    \"appUserDocument\":{\n        \"id\":37,\n        \"type\":1\n    },\n    \"birthday\":null,\n    \"resetDate\":null\n\n}",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/E:/OneDrive/Desktop/1.jpg"
+								},
+								{
+									"key": "fileDocument",
+									"type": "file",
+									"src": [
+										"/E:/OneDrive/Desktop/1.jpg",
+										"/E:/OneDrive/Desktop/Capture.JPG"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/app-users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"app-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changePassword",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\":\"tranducthinh1166@gmail.com\",\r\n     \"currentPassword\":\"@WSXcde3\",\r\n     \"newPassword\":\"#EDCvfr4\",\r\n     \"confirmPassword\":\"#EDCvfr4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/account/change-password-client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"change-password-client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "authenticate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"btdat1988@gmail.com\",\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/authenticate",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset-pass",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/account/reset-password/init?mail=btdat1988@gmail.com",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"account",
+								"reset-password",
+								"init"
+							],
+							"query": [
+								{
+									"key": "mail",
+									"value": "btdat1988@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "thuy-phi-co",
+			"item": [
+				{
+					"name": "search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "flight",
+									"value": "{\"adt\":1,\"chd\":1,\"inf\":1,\"listFlight\":[{\"airline\":\"\",\"departDate\":\"29032021\",\"startPoint\":\"Tuần Châu\",\"endPoint\":\"Tuần Châu\",\"startPointLabel\":\"\",\"endPointLabel\":\"\"}],\"endPlace\":1,\"startPlace\":1,\"startDate\":\"29032021\"}",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/seaplanes/guest?adt=1&chd=1&inf=1&startPlace=1&startDate=29/04/2021&startTime=&endPlace=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"seaplanes",
+								"guest"
+							],
+							"query": [
+								{
+									"key": "adt",
+									"value": "1",
+									"description": "so nguoi lon"
+								},
+								{
+									"key": "chd",
+									"value": "1",
+									"description": "so luong tre em"
+								},
+								{
+									"key": "inf",
+									"value": "1",
+									"description": "so luong tre so sinh"
+								},
+								{
+									"key": "startPlace",
+									"value": "1",
+									"description": "noi bat dau di 1: Tuan Chau"
+								},
+								{
+									"key": "startDate",
+									"value": "29/04/2021"
+								},
+								{
+									"key": "startTime",
+									"value": ""
+								},
+								{
+									"key": "endPlace",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dat-tpc",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"adt\": 1,\r\n    \"chd\": 0,\r\n    \"seaplaneId\": 41,\r\n    \"fullName\": \"Dat Tien Bui\",\r\n    \"phone\": \"0987137454\",\r\n\t\"address\": \"10a tt cảng\",\r\n\t\"email\": \"btdat1988@gmail.com\",\r\n    \"isInvoice\": \"0\",\r\n    \"taxCode\": null,\r\n    \"companyName\": null,\r\n    \"companyAddress\": null,\r\n    \"emailInvoice\": null,\r\n    \"passengers\": [\r\n        {\r\n        \"proclaimedTitle\": \"0\",\r\n        \"gender\": 0,\r\n        \"fullName\": \"Tran Dat\",\r\n        \"birthday\": \"\",\r\n        \"address\": \"\",\r\n        \"phoneNumber\": null,\r\n        \"email\": null\r\n        }\r\n    ]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/seaplanes/guest/book",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"seaplanes",
+								"guest",
+								"book"
+							],
+							"query": [
+								{
+									"key": "seaplaneId",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "fullName",
+									"value": "Tran Duc Thinh",
+									"disabled": true
+								},
+								{
+									"key": "phone",
+									"value": "0979954666",
+									"disabled": true
+								},
+								{
+									"key": "address",
+									"value": "Ha noi",
+									"disabled": true
+								},
+								{
+									"key": "adt",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "chd",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "inf",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "tranducthinh11@gmail.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "danh-sach-diem-den",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/seaplane-places/guest",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"seaplane-places",
+								"guest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "thông-tin-hủy-vé",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/seaplanes/guest/policy",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"seaplanes",
+								"guest",
+								"policy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "chi-tiet",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/seaplanes/guest/detail?fareDataId=41",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"seaplanes",
+								"guest",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "fareDataId",
+									"value": "41"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tour",
+			"item": [
+				{
+					"name": "danh-sach-diem-den",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/guest/places",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"guest",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search-tour",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/tours/guest/search-tour?placesIdList=61&continentsIdList=&tourTypeIdList=&countriesIds&tourCategoryIds&tourName&page=0&itemPerPage",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tours",
+								"guest",
+								"search-tour"
+							],
+							"query": [
+								{
+									"key": "placesIdList",
+									"value": "61",
+									"description": "danh sách mã nơi đến mặc định = \"\""
+								},
+								{
+									"key": "continentsIdList",
+									"value": "",
+									"description": "danh sách mã châu lục mặc định = \"\""
+								},
+								{
+									"key": "tourTypeIdList",
+									"value": "",
+									"description": "danh sách loại tour"
+								},
+								{
+									"key": "countriesIds",
+									"value": null,
+									"description": "danh sách quoc gia"
+								},
+								{
+									"key": "tourCategoryIds",
+									"value": null,
+									"description": "danh sách cate"
+								},
+								{
+									"key": "tourName",
+									"value": null,
+									"description": "tên"
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"description": "số trang"
+								},
+								{
+									"key": "itemPerPage",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "chi-tiet-tour",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/tours/detail/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tours",
+								"detail",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "ha-noi-chua-ba-vang-yen-tu-ha-noi111"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dat-tour",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"tourId\": 15,\r\n  \"tourPriceId\": 27,\r\n  \"tourCode\": \"MT00008\",\r\n  \"tourName\": \"Đà Nẵng - Sơn Trà - Hội An - Bà Nà - Cố Đô Huế\",\r\n  \"address\": \"Ha noi\",\r\n  \"adultNum\": 1,\r\n  \"childrenNum\": 0,\r\n  \"childrenNum2\": 0,\r\n  \"birthday\": \"01/01/2019\",\r\n  \"sex\": 1,\r\n  \"email\": \"tranducthinh11@gmail.com\",\r\n  \"fullName\": \"Trần Đức Thịnh\",\r\n  \"message\": \"\",\r\n  \"paymentMethod\": 3,\r\n  \"phoneNumber\": \"02402356989\",\r\n  \"startDate\": \"22/05/2020\",\r\n  \"proclaimedTitle\": \"3\",\r\n  \"tourCustomerLists\": [\r\n    {\r\n      \"proclaimedTitle\": \"3\",\r\n      \"fullName\": \"Trần Đức Thịnh\",\r\n      \"birthday\": null,\r\n      \"address\": \"ha noi\",\r\n      \"sex\": 1\r\n    }\r\n  ],\r\n  \"total\": 12450000,\r\n  \"countryId\": \"190\",\r\n  \"userIdShare\": null,\r\n  \"emailLogin\": \"\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/tour-customers/guest",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tour-customers",
+								"guest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "danh-sach-filter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/tours/guest/filter",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tours",
+								"guest",
+								"filter"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ve-may-bay",
+			"item": [
+				{
+					"name": "danh-sach-diem-di(den)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/tk/client/search-place",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tk",
+								"client",
+								"search-place"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search-nomal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"Adt\":1,\r\n    \"Chd\":2,\r\n    \"Inf\":0,\r\n    \"ViewMode\":\"\",\r\n    \"ListFlight\":[\r\n        {\r\n            \"StartPoint\":\"HAN\",\r\n            \"EndPoint\":\"SGN\",\r\n            \"DepartDate\":\"30052021\",\r\n            \"Airline\":\"\"\r\n        }\r\n    ]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/flights/guest/search",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"flights",
+								"guest",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "hanh-ly-ki-gui",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"Adt\":1,\r\n    \"Chd\":2,\r\n    \"Inf\":0,\r\n    \"ViewMode\":\"\",\r\n    \"ListFlight\":[\r\n        {\r\n            \"StartPoint\":\"HAN\",\r\n            \"EndPoint\":\"SGN\",\r\n            \"DepartDate\":\"08052021\",\r\n            \"Airline\":\"\"\r\n        }\r\n    ]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/flights/guest/search-baggage/:listFareData",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"flights",
+								"guest",
+								"search-baggage",
+								":listFareData"
+							],
+							"variable": [
+								{
+									"key": "listFareData",
+									"value": "[{\"AutoIssue\":false,\"FareDataId\":26,\"ListFlight\":[{\"FlightValue\":\"0VJ121A_ECOHANSGN202105101220\"}],\"Session\":\"DC12047HANSGN100521SGNHAN140521100083913\"}]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "lich-su-chuyen-bay",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/flights/guest?session=DC12047H ANSGN100521100082233&fareDataId=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"flights",
+								"guest"
+							],
+							"query": [
+								{
+									"key": "session",
+									"value": "DC12047H ANSGN100521100082233"
+								},
+								{
+									"key": "fareDataId",
+									"value": "1",
+									"description": "khứ hồi các giá trị cách nhau dấu phẩy"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dat-ve",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"BookType\": \"book-normal\",\r\n  \"Contact\": {\r\n    \"Gender\": true,\r\n    \"FirstName\": \"Thinh\",\r\n    \"LastName\": \"Tran\",\r\n    \"Phone\": \"0979954737\",\r\n    \"Email\": \"tranducthinh11@gmail.com\",\r\n    \"Address\": \"So 999 Tran Hung Dao\"\r\n  },\r\n  \"Ip\": \"1.55.159.36\",\r\n  \"ListFareData\": [\r\n    {\r\n      \"AutoIssue\": false,\r\n      \"FareDataId\": 2,\r\n      \"ListFlight\": [\r\n        {\r\n          \"FlightValue\": \"0VJ129E_ECOHANSGN202105130815\",\r\n          \"Leg\": 0\r\n        }\r\n      ],\r\n      \"Session\": \"DC12047HANSGN130521SGNHAN150521100105716\"\r\n    },\r\n    {\r\n      \"AutoIssue\": false,\r\n      \"FareDataId\": \"45\",\r\n      \"ListFlight\": [\r\n        {\r\n          \"FlightValue\": \"1VJ124E_ECOSGNHAN202105150730\",\r\n          \"Leg\": 1\r\n        }\r\n      ],\r\n      \"Session\": \"DC12047HANSGN130521SGNHAN150521100105716\"\r\n    }\r\n  ],\r\n  \"ListPassenger\": [\r\n    {\r\n      \"Birthday\": \"\",\r\n      \"FirstName\": \"Nam\",\r\n      \"Gender\": true,\r\n      \"Index\": 0,\r\n      \"LastName\": \"Hai\",\r\n      \"Type\": \"ADT\",\r\n      \"ListBaggage\": [\r\n        {\r\n          \"Airline\": \"VJ\",\r\n          \"Leg\": 0,\r\n          \"Route\": \"HANSGN\",\r\n          \"Code\": \"15\",\r\n          \"Currency\": \"VND\",\r\n          \"Name\": \"Bag 15kgs\",\r\n          \"Price\": 170500,\r\n          \"Value\": \"15\"\r\n        }\r\n      ]\r\n    }\r\n  ],\r\n  \"Note\": \"\",\r\n  \"PaymentMethod\": \"1\",\r\n  \"Remark\": \"\",\r\n  \"UseAgentContact\": true,\r\n  \"emailLogin\": \"\",\r\n  \"InvoiceDto\": {\r\n    \"address\": \"Ha noi\",\r\n    \"cityName\": \"\",\r\n    \"companyName\": \"Vcli\",\r\n    \"email\": \"tranducthinh11@gmail.com\",\r\n    \"receiver\": \"Tran Duc Nam\",\r\n    \"taxCode\": \"09799921\",\r\n    \"receiverAddress\": \"So 999 Tran Hung Dao\",\r\n    \"receiverMethod\": \"1\",\r\n    \"receiverPhone\": \"04349927777\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/flights/guest/book",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"flights",
+								"guest",
+								"book"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dieu-kien-gia-ve",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/guest/condition-price",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"guest",
+								"condition-price"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search-gia-thap-nhat",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"startPoint\":\"HAN\",\r\n    \"endPoint\":\"SGN\",\r\n    \"departDate\":\"19062021\",\r\n    \"airline\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/flights/guest/search-min",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"flights",
+								"guest",
+								"search-min"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HomeScreen",
+			"item": [
+				{
+					"name": "Menu",
+					"item": [
+						{
+							"name": "menu-header",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/app-menus",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"app-menus"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "menu-footer",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/app-menus-footer",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"app-menus-footer"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "home-cate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/home/cate",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"home",
+								"cate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search-tour-by-cate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/tours/home/search?cateId=3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"tours",
+								"home",
+								"search"
+							],
+							"query": [
+								{
+									"key": "cateId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tabs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/home/guest/tab",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"home",
+								"guest",
+								"tab"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Combo",
+			"item": [
+				{
+					"name": "danhSachDiemDen",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/guest/places",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"guest",
+								"places"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tìm kiếm",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/combo/guest/search?placeId=1&departureDate&departurePlaceId=1&comboName&orderBy=1&tourType=0&page=0&itemPerPage=10&continentId=&dayNum=5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"combo",
+								"guest",
+								"search"
+							],
+							"query": [
+								{
+									"key": "placeId",
+									"value": "1",
+									"description": "Id điểm đến"
+								},
+								{
+									"key": "departureDate",
+									"value": null,
+									"description": "ngày khởi hành"
+								},
+								{
+									"key": "departurePlaceId",
+									"value": "1",
+									"description": "Id nơi khởi hành"
+								},
+								{
+									"key": "comboName",
+									"value": null,
+									"description": "tên combo"
+								},
+								{
+									"key": "orderBy",
+									"value": "1",
+									"description": "1. Mặc định; 2. Giá từ cao đến thấp; 3. Giá từ thấp đến cao;"
+								},
+								{
+									"key": "tourType",
+									"value": "0",
+									"description": "0: mặc định 1:Tour du lịch hấp dẫn, 3 tour Vip......."
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "itemPerPage",
+									"value": "10"
+								},
+								{
+									"key": "continentId",
+									"value": "",
+									"description": "tìm kiếm theo châu lục"
+								},
+								{
+									"key": "dayNum",
+									"value": "5",
+									"description": "tìm kiếm theo số ngày"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Chi tiết combo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/combo/guest/detail/:link",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"combo",
+								"guest",
+								"detail",
+								":link"
+							],
+							"variable": [
+								{
+									"key": "link",
+									"value": "vinpearl-discovery-1-ha-trang"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "dặt combo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"comboId\": 1,\r\n    \"comboPriceId\": 1,\r\n    \"comboName\":\"Combo Đà Nẵng 3N2Đ: Minh Toàn Ocean Hotel 4* + Vé máy bay khứ hồi\",\r\n    \"address\" : \"Tòa VCCI, Số 9 Đào Duy Anh\",\r\n    \"fullName\": \"Trần Đức Thịnh\",\r\n    \"phoneNumber\": \"0979954737\",\r\n    \"email\": \"tranducthinh@gmail.com\",\r\n    \"description\": \"Tôi muốn abcxyz\",\r\n    \"isInvoice\": \"1\",\r\n    \"taxCode\": \"1254784667\",\r\n    \"companyName\": \"FWD Insurance\",\r\n    \"companyAddress\": \"Diamond Plaza, Lê Duẩn, HCM\",\r\n    \"emailInvoice\": \"emailInvoice@gmail.com\",\r\n    \"paymentMethod\": 1,\r\n    \"userId\": \"\",\r\n    \"startDate\":\"13/04/2021\",\r\n    \"proclaimedTitle\":1,\r\n    \"adultNum\": 2,\r\n    \"childrenNum\": 1,\r\n    \"childrenNum2\": 1,\r\n    \"emailLogin\":\"tranducthinh1166@gmail.com\",\r\n    \"total\": 10500000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/combo-customer/guest/order",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"combo-customer",
+								"guest",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "danh sách filter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/tours/guest/filter",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tours",
+								"guest",
+								"filter"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Khach-san",
+			"item": [
+				{
+					"name": "Khách sạn - Danh sách điểm đến",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/hotel-places/guest/getAll",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"hotel-places",
+								"guest",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Khách sạn - Tìm kiếm khách sạn",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/hotels/guest/customer-search?placeId=1&checkInDate&checkOutDate&hotelName=khách sạn&orderBy&star=0&priceFrom=0&priceTo=0&rateFrom=0&rateTo=0&type=1,2,3,4&page=0&itemPerPage=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"hotels",
+								"guest",
+								"customer-search"
+							],
+							"query": [
+								{
+									"key": "placeId",
+									"value": "1",
+									"description": "ID điểm đến(bắt buộc)"
+								},
+								{
+									"key": "checkInDate",
+									"value": null,
+									"description": "Ngày nhận phòng định dạng dd/MM/yyyy (bắt buộc)"
+								},
+								{
+									"key": "checkOutDate",
+									"value": null,
+									"description": "Ngày trả phòng Định dạng dd/MM/yyyy"
+								},
+								{
+									"key": "hotelName",
+									"value": "khách sạn",
+									"description": "Tên khách sạn"
+								},
+								{
+									"key": "orderBy",
+									"value": null,
+									"description": "Order 1. Mặc định; 2. Giá từ cao đến thấp; 3. Giá từ thấp đến cao;4. Theo đánh giá"
+								},
+								{
+									"key": "star",
+									"value": "0",
+									"description": "Số sao"
+								},
+								{
+									"key": "priceFrom",
+									"value": "0",
+									"description": "Giá từ"
+								},
+								{
+									"key": "priceTo",
+									"value": "0",
+									"description": "Giá đến"
+								},
+								{
+									"key": "rateFrom",
+									"value": "0",
+									"description": "Đánh giá sao từ"
+								},
+								{
+									"key": "rateTo",
+									"value": "0",
+									"description": "Đánh giá sao đến"
+								},
+								{
+									"key": "type",
+									"value": "1,2,3,4",
+									"description": "Loại tài sản 1.Khách sạn; 2.Căn hộ; 3. Biệt thự;4. Homestay --> nhập nhiều cách nhau bởi dấu , ví dụ 1,2,3,4"
+								},
+								{
+									"key": "page",
+									"value": "0",
+									"description": "page bắt đầu từ 0"
+								},
+								{
+									"key": "itemPerPage",
+									"value": "10",
+									"description": "Số phần tử trong 1 trang"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Khách sạn - Chi tiết khách sạn",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/hotels/guest/customer-getbyurl?url=Khach-san-Skylark-Ha-Noi-01&checkInDateStr=20/03/2020",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"hotels",
+								"guest",
+								"customer-getbyurl"
+							],
+							"query": [
+								{
+									"key": "url",
+									"value": "Khach-san-Skylark-Ha-Noi-01"
+								},
+								{
+									"key": "checkInDateStr",
+									"value": "20/03/2020",
+									"description": "check in date dd/MM/yyyy(bắt buộc)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Khách sạn - đặt câu hỏi",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hotelId\": 1,\r\n    \"name\":\"Phan Văn Hiển\",\r\n    \"email\":\"email@gmail.com\",\r\n    \"phone\":\"0978545215\",\r\n    \"content\":\"Customer rate content\",\r\n    \"rate\":4,\r\n    \"userId\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.242.1:8085/api/hotel-rates/guest/create",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"242",
+								"1"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"hotel-rates",
+								"guest",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Khách sạn - viết đánh giá",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hotelId\": 1,\r\n    \"name\":\"Phan Văn Hiển\",\r\n    \"email\":\"email@gmail.com\",\r\n    \"phone\":\"0978545215\",\r\n    \"content\":\"Customer rate content\",\r\n    \"rate\":4,\r\n    \"userId\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.242.1:8085/api/hotel-rates/guest/create",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"242",
+								"1"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"hotel-rates",
+								"guest",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Khách sạn - Đặt khách sạn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"hotelId\": 1,\r\n    \"gender\": 1,\r\n    \"fullName\":\"0978545215\",\r\n    \"cityId\": 1,\r\n    \"address\": \"Hà Nội\",\r\n    \"phone\": \"0978454854\",\r\n    \"phoneOther\": \"0978454856\",\r\n    \"email\": \"email@gmail.com\",\r\n    \"description\": \"Tôi muốn abcxyz\",\r\n    \"isInvoice\": \"1\",\r\n    \"taxCode\": \"1254784667\",\r\n    \"companyName\": \"VPbank\",\r\n    \"companyAddress\": \"89 Láng Hạ\",\r\n    \"emailInvoice\": \"emailInvoice@gmail.com\",\r\n    \"paymentMethod\": 1,\r\n    \"userId\": \"\",\r\n    \"checkInStr\":\"25/03/2021\",\r\n    \"checkOutStr\":\"30/03/2021\",\r\n    \"adultNum\": 2,\r\n    \"childNum\": 1,\r\n    \"lstRoom\":[\r\n        {\r\n            \"id\": null,\r\n            \"hotelId\": 1,\r\n            \"customerId\": null,\r\n            \"roomId\": 1,\r\n            \"extraBed\": 0,\r\n            \"price\": 10000000\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"hotelId\": 1,\r\n            \"customerId\": null,\r\n            \"roomId\": 2,\r\n            \"extraBed\": 0,\r\n            \"price\": 10000000\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.242.1:8085/api/hotel-customers/guest/order",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"242",
+								"1"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"hotel-customers",
+								"guest",
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Du-thuyen",
+			"item": [
+				{
+					"name": "Du Thuyền - Chi tiết du thuyền",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.242.1:8085/api/yachts/guest/customer-getbyid?yachtId=1&checkInDateStr=20/03/2020",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"242",
+								"1"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"yachts",
+								"guest",
+								"customer-getbyid"
+							],
+							"query": [
+								{
+									"key": "yachtId",
+									"value": "1",
+									"description": "Khách sạn ID(bắt buộc)"
+								},
+								{
+									"key": "checkInDateStr",
+									"value": "20/03/2020",
+									"description": "check in date dd/MM/yyyy(bắt buộc)"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Du Thuyền - Danh sách điểm đến",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/yacht-places/guest/getAll",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"yacht-places",
+								"guest",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Du Thuyền - Tìm kiếm du thuyền",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.242.1:8085/api/yachts/guest/customer-search?placeId=1&checkInDateStr=25/03/2021&yachtName&orderBy=0&tourDay=0&star=0&page=0&itemPerPage=10",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"242",
+								"1"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"yachts",
+								"guest",
+								"customer-search"
+							],
+							"query": [
+								{
+									"key": "placeId",
+									"value": "1"
+								},
+								{
+									"key": "checkInDateStr",
+									"value": "25/03/2021"
+								},
+								{
+									"key": "yachtName",
+									"value": ""
+								},
+								{
+									"key": "orderBy",
+									"value": "0"
+								},
+								{
+									"key": "tourDay",
+									"value": "0"
+								},
+								{
+									"key": "star",
+									"value": "0"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "itemPerPage",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Du Thuyền- Đặt du thuyền",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"yachtId\": 1,\r\n    \"gender\": 1,\r\n    \"fullName\":\"0978545215\",\r\n    \"cityId\": 1,\r\n    \"address\": \"Hà Nội\",\r\n    \"phone\": \"0978454854\",\r\n    \"phoneOther\": \"0978454856\",\r\n    \"email\": \"email@gmail.com\",\r\n    \"description\": \"Tôi muốn abcxyz\",\r\n    \"isInvoice\": \"1\",\r\n    \"taxCode\": \"1254784667\",\r\n    \"companyName\": \"VPbank\",\r\n    \"companyAddress\": \"89 Láng Hạ\",\r\n    \"emailInvoice\": \"emailInvoice@gmail.com\",\r\n    \"paymentMethod\": 1,\r\n    \"userId\": \"\",\r\n    \"checkInStr\":\"25/03/2021\",\r\n    \"checkOutStr\":\"30/03/2021\",\r\n    \"adultNum\": 2,\r\n    \"childNum\": 1,\r\n    \"lstRoom\":[\r\n        {\r\n            \"id\": null,\r\n            \"hotelId\": 1,\r\n            \"customerId\": null,\r\n            \"roomId\": 1,\r\n            \"extraBed\": 0,\r\n            \"price\": 10000000\r\n        },\r\n        {\r\n            \"id\": null,\r\n            \"hotelId\": 1,\r\n            \"customerId\": null,\r\n            \"roomId\": 2,\r\n            \"extraBed\": 0,\r\n            \"price\": 10000000\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.242.1:8085/api/yacht-customers/guest/order",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"242",
+								"1"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"yacht-customers",
+								"guest",
+								"order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
