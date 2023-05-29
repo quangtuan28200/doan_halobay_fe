@@ -1,0 +1,85 @@
+{
+    "status": 200,
+    "data": {
+        "flightType": "Domestic",
+        "session": "FAKEDATA",
+        "itinerary": 1,
+        "listFareData": [
+            {
+                "fareDataId": 1,
+                "airline": "VN",
+                "itinerary": 1,
+                "leg": 0,
+                "promo": false,
+                "currency": "VND",
+                "system": "LCC",
+                "adt": 1,
+                "chd": 0,
+                "inf": 0,
+                "fareAdt": 1500000,
+                "fareChd": 750000,
+                "fareInf": 100000,
+                "taxAdt": 150000,
+                "taxChd": 75000,
+                "taxInf": 10000,
+                "feeAdt": 80000,
+                "feeChd": 50000,
+                "feeInf": 30000,
+                "serviceFeeAdt": 100000,
+                "serviceFeeChd": 100000,
+                "serviceFeeInf": 100000,
+                "totalNetPrice": 1850000,
+                "totalServiceFee": 300000,
+                "totalPrice": 2150000,
+                "listFlight": [
+                    {
+                        "flightId": 1,
+                        "leg": 0,
+                        "airline": "VN",
+                        "startPoint": "HAN",
+                        "endPoint": "SGN",
+                        "startDate": "2019-04-09T19:49:45.889Z",
+                        "endDate": "2019-04-09T20:29:45.889Z",
+                        "flightNumber": "VN123",
+                        "stopNum": 0,
+                        "hasDownStop": false,
+                        "duration": 120,
+                        "noRefund": false,
+                        "groupClass": "Economy",
+                        "fareClass": "M",
+                        "promo": false,
+                        "flightValue": "",
+                        "listSegment": [
+                            {
+                                "id": 1,
+                                "airline": "VN",
+                                "startPoint": "HAN",
+                                "endPoint": "SGN",
+                                "startTime": "2019-04-09T19:49:45.889Z",
+                                "endTime": "2019-04-09T19:49:45.890Z",
+                                "flightNumber": "VN123",
+                                "duration": 120,
+                                "class": "M",
+                                "plane": "330",
+                                "startTerminal": "T1",
+                                "endTerminal": "T2",
+                                "hasStop": false,
+                                "stopPoint": "",
+                                "stopTime": 0,
+                                "dayChange": false,
+                                "stopOvernight": false,
+                                "changeStation": false,
+                                "changeAirport": false,
+                                "lastItem": true,
+                                "handBaggage": "7kg"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "status": true,
+        "errorCode": "",
+        "message": ""
+    }
+}

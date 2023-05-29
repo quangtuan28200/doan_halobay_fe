@@ -209,7 +209,7 @@
                                 <div class="tab-pane fade show active" id="roundtrip" role="tabpanel">
                                     <form action="{{ route('post_search_2_way_flight') }}" method="POST">
                                         {{ csrf_field() }}
-                                        <div class="dropdown dropdown-select-airplane dropdownPersonRoom ml-auto py-12px">
+                                        <div class="dropdown dropdown-select-airplane dropdownPersonRoom ml-auto py-12px text-right">
                                             <button class="btn bg-transparent p-0 border-0 no-active-focus text-success text-nowrap" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <span class="total-person">1</span> Hành khách
                                             </button>
@@ -341,7 +341,7 @@
                                 <div class="tab-pane fade" id="oneway" role="tabpanel">
                                     <form action="{{ route('post_search_flight') }}" method="POST">
                                         {{ csrf_field() }}
-                                        <div class="dropdown dropdown-select-airplane dropdownPersonRoom ml-auto py-12px">
+                                        <div class="dropdown dropdown-select-airplane dropdownPersonRoom ml-auto py-12px text-right">
                                             <button class="btn bg-transparent p-0 border-0 no-active-focus text-success text-nowrap" type="button" id="dropdownMenuButton_2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <span class="total-person">1</span> Hành khách
                                             </button>
@@ -388,7 +388,7 @@
                                                                     </span>
                                                                 </div>
                                                                 <label class="matter-textfield-filled select-matter form-control d-block h-auto p-0 mb-0">
-                                                                    <span>Chọn điểm đến</span>
+                                                                    <span>Chọn điểm đi</span>
                                                                     <select class="form-control h-auto py-12px bg-white selectpicker" data-live-search="true" name="begin_place_2_way">
                                                                         @foreach ($list_place_flight as $place_area_flight)
                                                                         <optgroup label="{{ $place_area_flight->name }}">

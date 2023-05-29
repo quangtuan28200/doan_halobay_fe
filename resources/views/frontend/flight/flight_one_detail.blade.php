@@ -1,5 +1,9 @@
 @extends('frontend.layouts.layout')
 @section('body')
+@php
+$flight = $flight_one->listFareData[0];
+$feeLuggage = 100000;
+@endphp
 <section class="combo-booking-list">
     <div class="airplane-booking-info py-3">
         <div class="container">
@@ -31,7 +35,7 @@
                                             <span>{{ $lists[0]['flightNumber'] }}</span>
                                         </div>
                                     </div>
-                                    <div class="airplane-ticket-info-body w-100">
+                                    <!-- <div class="airplane-ticket-info-body w-100">
                                         <div class="airplane-ticket-info-item w-100 d-flex align-items-center justify-content-between bg-white mb-5px p-2">
                                             <span>Giá vé người lớn</span>
                                             <span class="font-title-bold">{{ number_format($flight_one->listFareData[0]->fareAdt, 0, ',', '.') }} VND</span>
@@ -52,10 +56,94 @@
                                             <span>Hành Lý / {{ $flight_one->listFareData[0]->listFlight[0]->listSegment[0]->handBaggage }}</span>
                                             <span class="font-title-bold">Miễn phí</span>
                                         </div>
+                                    </div> -->
+                                    <div class="airplane-item-short-info">
+                                        <div class="d-flex bg-white py-2 mb-5px">
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div class="font-title-bold">Loại vé</div>
+                                            </div>
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div class="font-title-bold">SL</div>
+                                            </div>
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div class="font-title-bold">Giá vé</div>
+                                            </div>
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div class="font-title-bold">Thuế & phí</div>
+                                            </div>
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div class="font-title-bold">Tổng</div>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex bg-white py-2 mb-5px">
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div>Người lớn</div>
+                                            </div>
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div>{{ $flight->adt }}</div>
+                                            </div>
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div>{{ number_format($flight->fareAdt, 0, ',', '.') }} VNĐ</div>
+                                            </div>
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div>{{ number_format(($flight->taxAdt + $flight->feeAdt + $flight->serviceFee), 0, ',', '.') }} VNĐ</div>
+                                            </div>
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div>{{ number_format(($flight->fareAdt + $flight->taxAdt + $flight->feeAdt + $flight->serviceFee) * $flight->adt, 0, ',', '.') }} VNĐ</div>
+                                            </div>
+                                        </div>
+                                        @if ($flight->chd > 0)
+                                        <div class="d-flex bg-white py-2 mb-5px">
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div>Trẻ em</div>
+                                            </div>
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div>{{ $flight->chd }}</div>
+                                            </div>
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div> {{ number_format($flight->fareChd, 0, ',', '.') }} VNĐ</div>
+                                            </div>
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div>{{ number_format(($flight->taxChd + $flight->feeChd + $flight->serviceFee), 0, ',', '.') }} VNĐ</div>
+                                            </div>
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div>{{ number_format(($flight->fareChd + $flight->taxChd + $flight->feeChd + $flight->serviceFee) * $flight->chd, 0, ',', '.') }} VNĐ</div>
+                                            </div>
+                                        </div>
+                                        @endif
+                                        @if ($flight->inf > 0)
+                                        <div class="d-flex bg-white py-2 mb-5px">
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div>Em bé</div>
+                                            </div>
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div>{{ $flight->inf }}</div>
+                                            </div>
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div> {{ number_format($flight->fareInf, 0, ',', '.') }} VNĐ</div>
+                                            </div>
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div>{{ number_format(($flight->taxInf + $flight->feeInf + $flight->serviceFee), 0, ',', '.') }} VNĐ</div>
+                                            </div>
+                                            <div class="w-20 text-center font-1rem px-1">
+                                                <div>{{ number_format(($flight->fareInf + $flight->taxInf + $flight->feeInf + $flight->serviceFee) * $flight->inf, 0, ',', '.') }} VNĐ</div>
+                                            </div>
+                                        </div>
+                                        @endif
+                                        <div class="airplane-ticket-info-body w-100">
+                                            <div class="airplane-ticket-info-item w-100 d-flex align-items-center justify-content-between bg-white mb-5px p-2 px-4">
+                                                <span>Hành Lý / 1kg</span>
+                                                <span class="font-title-bold">{{ number_format($feeLuggage, 0, ',', '.') }} VNĐ</span>
+                                            </div>
+                                            <div class="airplane-ticket-info-item w-100 d-flex align-items-center justify-content-between bg-white mb-5px p-2 px-4">
+                                                <span>Tổng</span>
+                                                <span class="font-title-bold">{{ number_format(($flight->fareAdt + $flight->taxAdt + $flight->feeAdt + $flight->serviceFee) * $flight->adt + ($flight->fareChd + $flight->taxChd + $flight->feeChd + $flight->serviceFee) * $flight->chd + ($flight->fareInf + $flight->taxInf + $flight->feeInf + $flight->serviceFee) * $flight->inf + $feeLuggage, 0, ',', '.') }} VNĐ</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                           
+
                         </div>
                         <div class="row placeholder-color airplane-contact-info row-small-space">
                             <div class="col-sm-12 col-md-12 col-lg-12">
@@ -72,6 +160,7 @@
                             </div>
                             <div class="col-sm-12 col-md-3 col-lg-3">
                                 <div class="form-group mb-5px">
+                                    <span class="star-required">*</span>
                                     <select class="selectpicker form-control h-auto py-12px bg-white" name="contact_gender">
                                         <option value="0">Quý danh</option>
                                         <option value="1">Ông</option>
@@ -81,22 +170,25 @@
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-4 col-lg-4">
+                                <span class="star-required">*</span>
                                 <div class="form-group mb-5px">
                                     <div class="input-group">
-                                        <input type="text" class="form-control border-0 h-auto no-active-focus py-12px" placeholder="Họ (Yêu cầu: Viết không dấu)" name="first_name_contact">
+                                        <input type="text" class="form-control border-0 h-auto no-active-focus py-12px" placeholder="Họ" name="first_name_contact">
                                     </div>
                                     <span class="hidden">Bạn chưa nhập họ</span>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-5 col-lg-5">
+                                <span class="star-required">*</span>
                                 <div class="form-group mb-5px">
                                     <div class="input-group">
-                                        <input type="text" class="form-control border-0 h-auto no-active-focus py-12px" placeholder="Tên và tên đệm(Yêu cầu: Viết không dấu)" name="last_name_contact">
+                                        <input type="text" class="form-control border-0 h-auto no-active-focus py-12px" placeholder="Tên và tên đệm" name="last_name_contact">
                                     </div>
                                     <span class="hidden">Bạn chưa nhập tên và tên đệm</span>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
+                                <span class="star-required">*</span>
                                 <div class="form-group mb-5px">
                                     <div class="input-group">
                                         <input type="text" class="form-control border-0 h-auto no-active-focus py-12px" placeholder="Điện thoại" name="phone_number_contact">
@@ -105,6 +197,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
+                                <span class="star-required">*</span>
                                 <div class="form-group mb-5px">
                                     <div class="input-group">
                                         <input type="email" class="form-control border-0 h-auto no-active-focus py-12px" placeholder="Email" name="email_contact">
@@ -114,29 +207,32 @@
                             </div>
                             <div class="col-sm-12 col-md-12 col-lg-12">
                                 <div class="form-group">
-                                    <textarea class="form-control border-0 rounded-0" placeholder="Địa chỉ (Không bắt buộc phải nhập)" rows="4" name="address_contact"></textarea>
+                                    <textarea class="form-control border-0 rounded-0" placeholder="Ghi chú (Không bắt buộc phải nhập)" rows="4" name="address_contact"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6 vat hide">
                                 <div class="form-group mb-5px">
+                                    <span class="star-required">*</span>
                                     <div class="input-group">
-                                        <input type="number" class="form-control border-0 h-auto no-active-focus py-12px" placeholder="Mã số thuế (*)" name="tax_code">
+                                        <input type="number" class="form-control border-0 h-auto no-active-focus py-12px" placeholder="Mã số thuế" name="tax_code">
                                     </div>
                                     <span class="hidden">Bạn chưa nhập mã số thuế</span>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6 vat hide">
                                 <div class="form-group mb-5px">
+                                    <span class="star-required">*</span>
                                     <div class="input-group">
-                                        <input type="text" class="form-control border-0 h-auto no-active-focus py-12px" placeholder="Tên công ty (*)" name="company_name">
+                                        <input type="text" class="form-control border-0 h-auto no-active-focus py-12px" placeholder="Tên công ty" name="company_name">
                                     </div>
                                     <span class="hidden">Bạn chưa nhập tên công ty</span>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-12 col-lg-12 vat hide">
                                 <div class="form-group mb-5px">
+                                    <span class="star-required">*</span>
                                     <div class="input-group">
-                                        <input type="email" class="form-control border-0 h-auto no-active-focus py-12px" placeholder="Địa chỉ (*)" name="company_address">
+                                        <input type="email" class="form-control border-0 h-auto no-active-focus py-12px" placeholder="Địa chỉ" name="company_address">
                                     </div>
                                     <span class="hidden">Bạn chưa nhập địa chỉ công ty</span>
                                 </div>
@@ -144,108 +240,108 @@
                         </div>
                         <div class="placeholder-color list-user-info">
                             @for ($i=0; $i < $flight_one->listFareData[0]->adt; $i ++)
-                            <div class="row row-small-space user-info-item">
-                                <div class="col-sm-12 col-md-12 col-lg-12">
-                                    <div class="font-title font-22pt py-3">Người lớn {{ $i + 1 }}</div>
-                                </div>
-                                <div class="col-sm-12 col-md-3 col-lg-3">
-                                    <div class="form-group mb-5px">
-                                        <select class="selectpicker form-control h-auto py-12px bg-white" name="gender[]">
-                                            <option>Quý danh</option>
-                                            <option value="1">Ông</option>
-                                            <option value="2">Bà</option>
-                                        </select>
+                                <div class="row row-small-space user-info-item">
+                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                        <div class="font-title font-22pt py-3">Người lớn {{ $i + 1 }}</div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-3 col-lg-3">
+                                        <div class="form-group mb-5px">
+                                            <select class="selectpicker form-control h-auto py-12px bg-white" name="gender[]">
+                                                <option>Quý danh</option>
+                                                <option value="1">Ông</option>
+                                                <option value="2">Bà</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 col-lg-4 mb-5px">
+                                        <div class="form-group mb-0">
+                                            <input type="text" class="form-control border-0 h-auto py-12px" placeholder="Họ" name="first_name[]">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-5 col-lg-5 mb-5px">
+                                        <div class="form-group mb-0">
+                                            <input type="text" class="form-control border-0 h-auto py-12px" placeholder="Tên và tên đệm" name="last_name[]">
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="type[]" value="ADT">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group mb-5px">
+                                            <select class="form-control h-auto py-12px bg-white add_handbags" name="handbags_one[]">
+                                                <option value="0" data-price="0">Hành lý ký gửi mua thêm</option>
+                                                @if ($hand_bag_one->message == " " || $hand_bag_one->message == null)
+                                                @foreach ($hand_bag_one->listBaggage as $list)
+                                                <option value="{{ $list->airline . '-' . $list->leg . '-' . $list->route . '-' . $list->code . '-' . $list->currency . '-' . $list->name . '-' . $list->price . '-' . $list->value }}" data-price="{{ $list->price }}">{{ $list->name . ' (' . number_format($list->price, 0, ',', '.') . ' VND)' }}</option>
+                                                @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-md-4 col-lg-4 mb-5px">
-                                    <div class="form-group mb-0">
-                                        <input type="text" class="form-control border-0 h-auto py-12px" placeholder="Họ (Yêu cầu: Viết không dấu)" name="first_name[]">
+                                @endfor
+                                @for ($i=0; $i < $flight_one->listFareData[0]->chd; $i ++)
+                                    <div class="row row-small-space user-info-item">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <div class="font-title font-22pt py-3">Trẻ em {{ $i + 1 }}</div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3 col-lg-3">
+                                            <div class="form-group mb-5px">
+                                                <select class="selectpicker form-control h-auto py-12px bg-white" name="gender[]">
+                                                    <option>Quý danh</option>
+                                                    <option value="1">Ông</option>
+                                                    <option value="2">Bà</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-4 col-lg-4 mb-5px">
+                                            <div class="form-group mb-0">
+                                                <input type="text" class="form-control border-0 h-auto py-12px" placeholder="Họ" name="first_name[]">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-5 col-lg-5 mb-5px">
+                                            <div class="form-group mb-0">
+                                                <input type="text" class="form-control border-0 h-auto py-12px" placeholder="Tên và tên đệm" name="last_name[]">
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="type[]" value="CHD">
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
+                                            <div class="form-group mb-5px">
+                                                <select class="form-control h-auto py-12px bg-white add_handbags" name="handbags_one[]">
+                                                    <option value="0" data-price="0">Hành lý ký gửi mua thêm</option>
+                                                    @foreach ($hand_bag_one->listBaggage as $list)
+                                                    <option value="{{ $list->airline . '-' . $list->leg . '-' . $list->route . '-' . $list->code . '-' . $list->currency . '-' . $list->name . '-' . $list->price . '-' . $list->value }}" data-price="{{ $list->price }}">{{ $list->name . ' (' . number_format($list->price, 0, ',', '.') . ' VND)' }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-12 col-md-5 col-lg-5 mb-5px">
-                                    <div class="form-group mb-0">
-                                        <input type="text" class="form-control border-0 h-auto py-12px" placeholder="Tên và tên đệm (Yêu cầu: Viết không dấu)" name="last_name[]">
-                                    </div>
-                                </div>
-                                <input type="hidden" name="type[]" value="ADT">
-                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group mb-5px">
-                                        <select class="form-control h-auto py-12px bg-white add_handbags" name="handbags_one[]">
-                                            <option value="0" data-price="0">Hành lý ký gửi mua thêm</option>
-                                            @if ($hand_bag_one->message == " " || $hand_bag_one->message == null)
-                                            @foreach ($hand_bag_one->listBaggage as $list)
-                                            <option value="{{ $list->Airline . '-' . $list->Leg . '-' . $list->Route . '-' . $list->Code . '-' . $list->Currency . '-' . $list->Name . '-' . $list->Price . '-' . $list->Value }}" data-price="{{ $list->Price }}">{{ $list->Name . ' (' . number_format($list->Price, 0, ',', '.') . ' VND)' }}</option>
-                                            @endforeach
-                                            @endif
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            @endfor
-                            @for ($i=0; $i < $flight_one->listFareData[0]->chd; $i ++)
-                            <div class="row row-small-space user-info-item">
-                                <div class="col-sm-12 col-md-12 col-lg-12">
-                                    <div class="font-title font-22pt py-3">Trẻ em {{ $i + 1 }}</div>
-                                </div>
-                                <div class="col-sm-12 col-md-3 col-lg-3">
-                                    <div class="form-group mb-5px">
-                                        <select class="selectpicker form-control h-auto py-12px bg-white" name="gender[]">
-                                            <option>Quý danh</option>
-                                            <option value="1">Ông</option>
-                                            <option value="2">Bà</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4 col-lg-4 mb-5px">
-                                    <div class="form-group mb-0">
-                                        <input type="text" class="form-control border-0 h-auto py-12px" placeholder="Họ (Yêu cầu: Viết không dấu)" name="first_name[]">
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-5 col-lg-5 mb-5px">
-                                    <div class="form-group mb-0">
-                                        <input type="text" class="form-control border-0 h-auto py-12px" placeholder="Tên và tên đệm (Yêu cầu: Viết không dấu)" name="last_name[]">
-                                    </div>
-                                </div>
-                                <input type="hidden" name="type[]" value="CHD">
-                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group mb-5px">
-                                        <select class="form-control h-auto py-12px bg-white add_handbags" name="handbags_one[]">
-                                            <option value="0" data-price="0">Hành lý ký gửi mua thêm</option>
-                                            @foreach ($hand_bag_one->listBaggage as $list)
-                                            <option value="{{ $list->Airline . '-' . $list->Leg . '-' . $list->Route . '-' . $list->Code . '-' . $list->Currency . '-' . $list->Name . '-' . $list->Price . '-' . $list->Value }}" data-price="{{ $list->Price }}">{{ $list->Name . ' (' . number_format($list->Price, 0, ',', '.') . ' VND)' }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            @endfor
-                            @for ($i=0; $i < $flight_one->listFareData[0]->inf; $i ++)
-                            <div class="row row-small-space user-info-item">
-                                <div class="col-sm-12 col-md-12 col-lg-12">
-                                    <div class="font-title font-22pt py-3">Em bé {{ $i + 1 }}</div>
-                                </div>
-                                <div class="col-sm-12 col-md-3 col-lg-3">
-                                    <div class="form-group mb-5px">
-                                        <select class="selectpicker form-control h-auto py-12px bg-white" name="gender[]">
-                                            <option>Quý danh</option>
-                                            <option value="1">Ông</option>
-                                            <option value="2">Bà</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-4 col-lg-4 mb-5px">
-                                    <div class="form-group mb-0">
-                                        <input type="text" class="form-control border-0 h-auto py-12px" placeholder="Họ (Yêu cầu: Viết không dấu)" name="first_name[]">
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-5 col-lg-5 mb-5px">
-                                    <div class="form-group mb-0">
-                                        <input type="text" class="form-control border-0 h-auto py-12px" placeholder="Tên và tên đệm (Yêu cầu: Viết không dấu)" name="last_name[]">
-                                    </div>
-                                </div>
-                                <input type="hidden" name="type[]" value="INF">
-                            </div>
-                            @endfor
+                                    @endfor
+                                    @for ($i=0; $i < $flight_one->listFareData[0]->inf; $i ++)
+                                        <div class="row row-small-space user-info-item">
+                                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                                <div class="font-title font-22pt py-3">Em bé {{ $i + 1 }}</div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-3 col-lg-3">
+                                                <div class="form-group mb-5px">
+                                                    <select class="selectpicker form-control h-auto py-12px bg-white" name="gender[]">
+                                                        <option>Quý danh</option>
+                                                        <option value="1">Ông</option>
+                                                        <option value="2">Bà</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-4 col-lg-4 mb-5px">
+                                                <div class="form-group mb-0">
+                                                    <input type="text" class="form-control border-0 h-auto py-12px" placeholder="Họ" name="first_name[]">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-5 col-lg-5 mb-5px">
+                                                <div class="form-group mb-0">
+                                                    <input type="text" class="form-control border-0 h-auto py-12px" placeholder="Tên và tên đệm" name="last_name[]">
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="type[]" value="INF">
+                                        </div>
+                                        @endfor
                         </div>
                         @include('frontend.block.payment_method')
                     </div>
@@ -259,42 +355,42 @@
                                     <div class="py-2 px-3 font-title bg-white">Giá vé chuyến đi</div>
                                     <li class="list-group-item font-15pt d-flex align-items-center justify-content-between border-0 py-2 px-3 mt-1 mb-5px">
                                         <div>Giá vé người lớn</div>
-                                        <div>{{ number_format($flight_one->listFareData[0]->fareAdt, 0, ',', '.') }} VND</div>
+                                        <div>{{ number_format(($flight->fareAdt) * $flight->adt, 0, ',', '.') }} VNĐ</div>
                                     </li>
                                     <li class="list-group-item font-15pt d-flex align-items-center justify-content-between border-0 py-2 px-3 mb-5px">
                                         <div>Giá vé trẻ em</div>
-                                        <div>{{ number_format($flight_one->listFareData[0]->fareChd, 0, ',', '.') }} VND</div>
+                                        <div>{{ number_format(($flight->fareChd) * $flight->chd, 0, ',', '.') }} VNĐ</div>
                                     </li>
                                     <li class="list-group-item font-15pt d-flex align-items-center justify-content-between border-0 py-2 px-3 mb-5px">
                                         <div>Giá vé em bé</div>
-                                        <div>{{ number_format($flight_one->listFareData[0]->fareInf, 0, ',', '.') }} VND</div>
+                                        <div>{{ number_format(($flight->fareInf) * $flight->inf, 0, ',', '.') }} VNĐ</div>
                                     </li>
                                     <li class="list-group-item font-15pt d-flex align-items-center justify-content-between border-0 py-2 px-3 mb-5px">
                                         <div>Thuế phí</div>
-                                        <div>{{ number_format($flight_one->total_fee_service, 0, ',', '.') }} VND</div>
+                                        <div>{{ number_format(($flight->taxAdt + $flight->feeAdt + $flight->serviceFee) * $flight->adt + ($flight->taxChd + $flight->feeChd + $flight->serviceFee) * $flight->chd + ($flight->taxInf + $flight->feeInf + $flight->serviceFee) * $flight->inf, 0, ',', '.') }} VND</div>
                                     </li>
                                     <li class="list-group-item font-15pt d-flex align-items-center justify-content-between border-0 py-2 px-3 mb-5px">
                                         <div>Hành lý / {{ $flight_one->listFareData[0]->listFlight[0]->listSegment[0]->handBaggage }}</div>
-                                        <div>Miễn phí</div>
+                                        <div>{{ number_format($feeLuggage, 0, ',', '.') }} VNĐ</div>
                                     </li>
                                 </ul>
                             </div>
                             <div class="paymanet-info-footer">
                                 <div class="d-flex align-items-center bg-white justify-content-between mb-1 py-2 px-3">
                                     <div>Tổng</div>
-                                    <div class="text-success font-title total" data-price="{{ $flight_one->total }}">{{ number_format(($flight_one->total), 0, ',', '.') }} VND</div>
+                                    <div class="text-success font-title total" data-price="{{ $flight_one->total }}">{{ number_format(($flight->fareAdt + $flight->taxAdt + $flight->feeAdt + $flight->serviceFee) * $flight->adt + ($flight->fareChd + $flight->taxChd + $flight->feeChd + $flight->serviceFee) * $flight->chd + ($flight->fareInf + $flight->taxInf + $flight->feeInf + $flight->serviceFee) * $flight->inf + $feeLuggage, 0, ',', '.') }} VNĐ</div>
                                 </div>
                                 <div class="p-3 text-danger bg-white text-right mb-5px">* Giá bao gồm thuế và phí</div>
                             </div>
                         </div>
-                        <div class="payment-info mb-1">
+                        <div class="payment-info mt-4">
                             <div class="payment-info-header">
                                 <div class="font-title p-3 bg-white text-center font-18pt border-bottom">Điều kiện vé chuyến đi</div>
                             </div>
                             <div class="payment-info-body p-3 bg-white">
                                 @foreach ($fare_conditions as $val)
-                                    <h6>{{ $val->nameAirline }}</h6>
-                                    {!! $val->conditions !!}
+                                <h6>{{ $val->nameAirline }}</h6>
+                                {!! $val->conditions !!}
                                 @endforeach
                             </div>
                         </div>
@@ -315,16 +411,16 @@
 @endsection
 @section('scripts')
 <script>
-    $('body').on('change', '.add_handbags', function () {
+    $('body').on('change', '.add_handbags', function() {
         const total = $('.total').data('price');
         let price;
-        $('.add_handbags').each(function (key, value) {
+        $('.add_handbags').each(function(key, value) {
             price = $('option:selected', value).data('price');
         })
         $('.total').html(accounting.formatMoney(total + price, '', 0, '.', ',') + ' VND');
     });
     $('body').on('click', '.btn-submit', function() {
-        let error = 0; 
+        let error = 0;
         const form = $(this).closest('form');
         const first_name_contact = form.find('input[name=first_name_contact]').val();
         if (checkInput(form, first_name_contact, 'first_name_contact') === 0) error++;
@@ -342,15 +438,15 @@
         });
         if (error !== 0) {
             $("html,body").animate({
-                scrollTop: $('.airplane-contact-info').offset().top, 
+                scrollTop: $('.airplane-contact-info').offset().top,
                 scrollLeft: 0
-            },600);
+            }, 600);
         } else if (payment_method == undefined) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: "Bạn chưa chọn phương thức thanh toán",
-                });
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Bạn chưa chọn phương thức thanh toán",
+            });
         } else {
             if ($('input[name=is_vat').is(':checked')) {
                 const tax_code = form.find('input[name=tax_code]').val();
@@ -359,12 +455,12 @@
                 if (checkInput(form, company_name, 'company_name') === 0) error++;
                 const company_address = form.find('input[name=company_address]').val();
                 if (checkInput(form, company_address, 'company_address') === 0) error++;
-            } 
+            }
             if (error !== 0) {
-                    $("html,body").animate({
-                        scrollTop: $('textarea[name=content]').offset().top, 
-                        scrollLeft: 0
-                    },600);
+                $("html,body").animate({
+                    scrollTop: $('textarea[name=content]').offset().top,
+                    scrollLeft: 0
+                }, 600);
             } else {
                 form.submit();
             }
