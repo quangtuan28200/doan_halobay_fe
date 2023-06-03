@@ -321,7 +321,7 @@
                                                             </div>
                                                             <div class="w-40 d-flex align-items-center justify-content-between font-title">
                                                                 <span>{{ Carbon\Carbon::parse($flight->listFlight[0]->listSegment[0]->startTime)->format('d/m/Y') }}</span>
-                                                                <span class="font-title">{{$flight->listFlight[0]->airPortStart}}</span>
+                                                                <span class="font-title">{{$flight->listFlight[0]->airportStart}}</span>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex align-items-center justify-content-between">
@@ -336,7 +336,7 @@
                                                             </div>
                                                             <div class="w-40 d-flex align-items-center justify-content-between font-title">
                                                                 <span>{{ Carbon\Carbon::parse($flight->listFlight[0]->listSegment[0]->endTime)->format('d/m/Y') }}</span>
-                                                                <span class="font-title">{{$flight->listFlight[0]->airPortEnd}}</span>
+                                                                <span class="font-title">{{$flight->listFlight[0]->airportEnd}}</span>
                                                             </div>
                                                         </div>
                                                         <div class="d-flex align-items-center justify-content-between">
