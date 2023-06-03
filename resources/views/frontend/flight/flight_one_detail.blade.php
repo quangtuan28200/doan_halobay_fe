@@ -131,13 +131,13 @@ $feeLuggage = 100000;
                                         </div>
                                         @endif
                                         <div class="airplane-ticket-info-body w-100">
-                                            <div class="airplane-ticket-info-item w-100 d-flex align-items-center justify-content-between bg-white mb-5px p-2 px-4">
+                                            <!-- <div class="airplane-ticket-info-item w-100 d-flex align-items-center justify-content-between bg-white mb-5px p-2 px-4">
                                                 <span>Hành Lý / 1kg</span>
                                                 <span class="font-title-bold">{{ number_format($feeLuggage, 0, ',', '.') }} VNĐ</span>
-                                            </div>
+                                            </div> -->
                                             <div class="airplane-ticket-info-item w-100 d-flex align-items-center justify-content-between bg-white mb-5px p-2 px-4">
                                                 <span>Tổng</span>
-                                                <span class="font-title-bold">{{ number_format(($flight->fareAdt + $flight->taxAdt + $flight->feeAdt + $flight->serviceFee) * $flight->adt + ($flight->fareChd + $flight->taxChd + $flight->feeChd + $flight->serviceFee) * $flight->chd + ($flight->fareInf + $flight->taxInf + $flight->feeInf + $flight->serviceFee) * $flight->inf + $feeLuggage, 0, ',', '.') }} VNĐ</span>
+                                                <span class="font-title-bold">{{ number_format(($flight->fareAdt + $flight->taxAdt + $flight->feeAdt + $flight->serviceFee) * $flight->adt + ($flight->fareChd + $flight->taxChd + $flight->feeChd + $flight->serviceFee) * $flight->chd + ($flight->fareInf + $flight->taxInf + $flight->feeInf + $flight->serviceFee) * $flight->inf, 0, ',', '.') }} VNĐ</span>
                                             </div>
                                         </div>
                                     </div>
@@ -357,14 +357,18 @@ $feeLuggage = 100000;
                                         <div>Giá vé người lớn</div>
                                         <div>{{ number_format(($flight->fareAdt) * $flight->adt, 0, ',', '.') }} VNĐ</div>
                                     </li>
+                                    @if($flight->chd > 0)
                                     <li class="list-group-item font-15pt d-flex align-items-center justify-content-between border-0 py-2 px-3 mb-5px">
                                         <div>Giá vé trẻ em</div>
                                         <div>{{ number_format(($flight->fareChd) * $flight->chd, 0, ',', '.') }} VNĐ</div>
                                     </li>
+                                    @endif
+                                    @if($flight->inf > 0)
                                     <li class="list-group-item font-15pt d-flex align-items-center justify-content-between border-0 py-2 px-3 mb-5px">
                                         <div>Giá vé em bé</div>
                                         <div>{{ number_format(($flight->fareInf) * $flight->inf, 0, ',', '.') }} VNĐ</div>
                                     </li>
+                                    @endif
                                     <li class="list-group-item font-15pt d-flex align-items-center justify-content-between border-0 py-2 px-3 mb-5px">
                                         <div>Thuế phí</div>
                                         <div>{{ number_format(($flight->taxAdt + $flight->feeAdt + $flight->serviceFee) * $flight->adt + ($flight->taxChd + $flight->feeChd + $flight->serviceFee) * $flight->chd + ($flight->taxInf + $flight->feeInf + $flight->serviceFee) * $flight->inf, 0, ',', '.') }} VND</div>
@@ -378,12 +382,12 @@ $feeLuggage = 100000;
                             <div class="paymanet-info-footer">
                                 <div class="d-flex align-items-center bg-white justify-content-between mb-1 py-2 px-3">
                                     <div>Tổng</div>
-                                    <div class="text-success font-title total" data-price="{{ $flight_one->total }}">{{ number_format(($flight->fareAdt + $flight->taxAdt + $flight->feeAdt + $flight->serviceFee) * $flight->adt + ($flight->fareChd + $flight->taxChd + $flight->feeChd + $flight->serviceFee) * $flight->chd + ($flight->fareInf + $flight->taxInf + $flight->feeInf + $flight->serviceFee) * $flight->inf + $feeLuggage, 0, ',', '.') }} VNĐ</div>
+                                    <div class="text-success font-title total" data-price="{{ $flight_one->total }}">{{ number_format(($flight->fareAdt + $flight->taxAdt + $flight->feeAdt + $flight->serviceFee) * $flight->adt + ($flight->fareChd + $flight->taxChd + $flight->feeChd + $flight->serviceFee) * $flight->chd + ($flight->fareInf + $flight->taxInf + $flight->feeInf + $flight->serviceFee) * $flight->inf, 0, ',', '.') }} VNĐ</div>
                                 </div>
                                 <div class="p-3 text-danger bg-white text-right mb-5px">* Giá bao gồm thuế và phí</div>
                             </div>
                         </div>
-                        <div class="payment-info mt-4">
+                        <!-- <div class="payment-info mt-4">
                             <div class="payment-info-header">
                                 <div class="font-title p-3 bg-white text-center font-18pt border-bottom">Điều kiện vé chuyến đi</div>
                             </div>
@@ -393,7 +397,7 @@ $feeLuggage = 100000;
                                 {!! $val->conditions !!}
                                 @endforeach
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="dropdown-divider my-4"></div>
