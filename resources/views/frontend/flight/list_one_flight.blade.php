@@ -206,8 +206,8 @@
                                                     </div>
                                                     <div class="w-85 d-flex align-items-center justify-content-between flex-wrap airplane-ticket-info airplane-ticket-oneway">
                                                         <div class="text-center align-middle p-0 w-10">{{ $flight->listFlight[0]->flightNumber }}</div>
-                                                        <div class="font-title-bold text-center align-middle text-primary font-title-bold p-0 w-15">{{ Carbon\Carbon::parse($flight->listFlight[0]->listSegment[0]->startTime)->format('H:i') }}</div>
-                                                        <div class="font-title-bold text-center align-middle p-0 w-10">7KG</div>
+                                                        <div class="font-title-bold text-center align-middle text-primary font-title-bold p-0 w-15">{{ Carbon\Carbon::parse($flight->listFlight[0]->startDate)->format('H:i') }}</div>
+                                                        <div class="font-title-bold text-center align-middle text-primary font-title-bold p-0 w-10">{{ Carbon\Carbon::parse($flight->listFlight[0]->endDate)->format('H:i') }}</div>
                                                         <div class="text-center align-middle text-danger font-title-bold text-nowrap py-0 px-1 w-25">
                                                             {{ number_format($flight->fareAdt, 0, ',', '.') }} VNĐ
                                                         </div>
@@ -317,10 +317,10 @@
                                                         <div class="d-flex align-items-center justify-content-between">
                                                             <div class="w-55 d-flex align-items-center justify-content-between font-title">
                                                                 <span>{{ $lists[0]['info']['startPoint'] }}</span>
-                                                                <span>{{ Carbon\Carbon::parse($flight->listFlight[0]->listSegment[0]->startTime)->format('H:i') }}</span>
+                                                                <span>{{ Carbon\Carbon::parse($flight->listFlight[0]->startDate)->format('H:i') }}</span>
                                                             </div>
                                                             <div class="w-40 d-flex align-items-center justify-content-between font-title">
-                                                                <span>{{ Carbon\Carbon::parse($flight->listFlight[0]->listSegment[0]->startTime)->format('d/m/Y') }}</span>
+                                                                <span>{{ Carbon\Carbon::parse($flight->listFlight[0]->startDate)->format('d/m/Y') }}</span>
                                                                 <span class="font-title">{{$flight->listFlight[0]->airportStart}}</span>
                                                             </div>
                                                         </div>
@@ -332,10 +332,10 @@
                                                         <div class="d-flex align-items-center justify-content-between">
                                                             <div class="w-55 d-flex align-items-center justify-content-between font-title">
                                                                 <span>{{ $lists[0]['info']['endPoint'] }}</span>
-                                                                <span>{{ Carbon\Carbon::parse($flight->listFlight[0]->listSegment[0]->endTime)->format('H:i') }}</span>
+                                                                <span>{{ Carbon\Carbon::parse($flight->listFlight[0]->endDate)->format('H:i') }}</span>
                                                             </div>
                                                             <div class="w-40 d-flex align-items-center justify-content-between font-title">
-                                                                <span>{{ Carbon\Carbon::parse($flight->listFlight[0]->listSegment[0]->endTime)->format('d/m/Y') }}</span>
+                                                                <span>{{ Carbon\Carbon::parse($flight->listFlight[0]->endDate)->format('d/m/Y') }}</span>
                                                                 <span class="font-title">{{$flight->listFlight[0]->airportEnd}}</span>
                                                             </div>
                                                         </div>
