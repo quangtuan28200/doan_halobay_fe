@@ -198,17 +198,17 @@
                                     <div class="tab-pane fade show active" id="airplane-ticket-go-day-1" role="tabpanel">
                                         <div class="airplane-item-list-container">
                                             @if (isset($lists[0]['list_flight']))
-                                            @foreach ($lists[0]['list_flight'] as $flight)
-                                            <div class="airplane-item">
+                                            @foreach ($lists[0]['list_flight'] as $index => $flight)
+                                            <div class="airplane-item" index="{{$index}}">
                                                 <div class="d-flex align-items-center justify-content-between airplane-item-content bg-gray-gradient py-2 px-2">
-                                                    <div class="w-15 airplane-ticket-logo">
+                                                    <div class="air-company w-15 airplane-ticket-logo" air-company-data="{{$flight->listFlight[0]->airline}}">
                                                         <img src="{{ asset($flight->listFlight[0]->icon) }}" class="img-fluid">
                                                     </div>
                                                     <div class="w-85 d-flex align-items-center justify-content-between flex-wrap airplane-ticket-info airplane-ticket-oneway">
                                                         <div class="text-center align-middle p-0 w-10">{{ $flight->listFlight[0]->flightNumber }}</div>
-                                                        <div class="font-title-bold text-center align-middle text-primary font-title-bold p-0 w-15">{{ Carbon\Carbon::parse($flight->listFlight[0]->startDate)->format('H:i') }}</div>
+                                                        <div class="start-date font-title-bold text-center align-middle text-primary font-title-bold p-0 w-15" start-date-value="{{Carbon\Carbon::parse($flight->listFlight[0]->startDate)->timestamp}}">{{ Carbon\Carbon::parse($flight->listFlight[0]->startDate)->format('H:i') }}</div>
                                                         <div class="font-title-bold text-center align-middle text-primary font-title-bold p-0 w-10">{{ Carbon\Carbon::parse($flight->listFlight[0]->endDate)->format('H:i') }}</div>
-                                                        <div class="text-center align-middle text-danger font-title-bold text-nowrap py-0 px-1 w-25">
+                                                        <div class="fare-ticket text-center align-middle text-danger font-title-bold text-nowrap py-0 px-1 w-25" fare-ticket="{{$flight->fareAdt}}">
                                                             {{ number_format($flight->fareAdt, 0, ',', '.') }} VNĐ
                                                         </div>
                                                         <div class="text-right text-lg-center align-middle py-0 px-1 w-10 d-xs-none d-sm-none d-md-block d-lg-block d-xl-block">
@@ -500,7 +500,7 @@
                             <div class="font-title-bold font-18pt mb-2">Hãng hàng không</div>
                             <div class="matter-checkbox-item">
                                 <label class="matter-checkbox">
-                                    <input class="airline_company" type="checkbox" value="0" checked>
+                                    <input class="airline_company" type="checkbox" value="All" checked>
                                     <span>Tất cả các hãng máy bay</span>
                                 </label>
                             </div>
@@ -558,14 +558,14 @@
                                     <div class="p-1 bg-white border radius-sm border-secondary text-center overflow-hidden airplane-time-flight-item" data-value="3">
                                         <img src="{{ asset('frontend/img/flight-afternoon-icon.png') }}" class="img-fluid" width="20">
                                         <div class="font-title font-15pt">Buổi chiều</div>
-                                        <div class="font-13pt">(12:00 - 17:59 sáng)</div>
+                                        <div class="font-13pt">(12:00 - 17:59 chiều)</div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="p-1 bg-white border radius-sm border-secondary text-center overflow-hidden airplane-time-flight-item" data-value="4">
                                         <img src="{{ asset('frontend/img/flight-night-icon.png') }}" class="img-fluid" width="20">
                                         <div class="font-title font-15pt">Buổi tối</div>
-                                        <div class="font-13pt">(18:00 - 23:59 sáng)</div>
+                                        <div class="font-13pt">(18:00 - 23:59 tối)</div>
                                     </div>
                                 </div>
                             </div>
@@ -611,6 +611,94 @@
             }
         });
     }
+    const listFlightTmp = $('.airplane-item-list-container');
+
+    const fillterViewMode = (listFlight, startTime, endTime) => {
+        var filteredFlights = listFlight.filter(function() {
+            var time = $(this).find('.start-date').text() // Lấy giá trị thời gian từ phần tử
+            var hour = parseInt(time.split(':')[0]); // Lấy giờ từ thời gian
+            if (hour >= startTime && hour <= endTime) {
+                return true; // Giữ lại phần tử trong danh sách lọc
+            } else {
+                return false; // Loại bỏ phần tử khỏi danh sách lọc
+            }
+        })
+
+        listFlight.each(function() {
+            $(this).hide();
+        });
+        filteredFlights.each(function() {
+            $(this).show();
+        });
+    }
+
+    const filterFlight = () => {
+        const orderBy = parseInt($('.orderBy:checked').val());
+        const airlineCompany = $('.airline_company:checked').val()
+        const viewMode = $('.airplane-time-flight-item.active').data('value');
+
+        // Lấy danh sách các chuyến bay
+        const listFlight = $('.airplane-item-list-container');
+
+        // Sap xep danh sach
+        if (orderBy === 0) {
+            // Sắp xếp danh sách theo mặc định
+            listFlight.children('.airplane-item').sort(function(a, b) {
+                var indexA = $(a).attr('index');
+                var indexB = $(b).attr('index');
+                return indexA - indexB;
+            }).appendTo(listFlight);
+        } else if (orderBy === 1) {
+            // Sắp xếp danh sách theo giá vé giảm dần
+            listFlight.children('.airplane-item').sort(function(a, b) {
+                var priceA = parseInt($(a).find('.fare-ticket').attr('fare-ticket'));
+                var priceB = parseInt($(b).find('.fare-ticket').attr('fare-ticket'));
+                return priceB - priceA;
+            }).appendTo(listFlight);
+        } else if (orderBy === 2) {
+            // Sắp xếp danh sách theo giá vé tăng dần
+            listFlight.children('.airplane-item').sort(function(a, b) {
+                var priceA = parseInt($(a).find('.fare-ticket').attr('fare-ticket'));
+                var priceB = parseInt($(b).find('.fare-ticket').attr('fare-ticket'));
+                return priceA - priceB;
+            }).appendTo(listFlight);
+        } else if (orderBy === 3) {
+            // Sắp xếp danh sách theo thời gian khởi hành
+            listFlight.children('.airplane-item').sort(function(a, b) {
+                var timeA = parseInt($(a).find('.start-date').attr('start-date-value'));
+                var timeB = parseInt($(b).find('.start-date').attr('start-date-value'));
+                return timeA - timeB;
+            }).appendTo(listFlight);
+        }
+
+        // Lọc theo hãng hàng không
+        if (airlineCompany !== 'All') {
+            listFlight.children('.airplane-item').each(function() {
+                const airlineCompanyItem = $(this).find('.air-company').attr('air-company-data');
+                if (airlineCompanyItem !== airlineCompany) {
+                    $(this).hide();
+                } else {
+                    $(this).show();
+                }
+            });
+        } else {
+            listFlight.children('.airplane-item').each(function() {
+                $(this).show();
+            });
+        }
+
+        // Lọc theo viewMode
+        var airplaneItemsShow = listFlight.children('.airplane-item').filter(':visible');
+        if (viewMode === 1) {
+            fillterViewMode(airplaneItemsShow, 0, 4)
+        } else if (viewMode === 2) {
+            fillterViewMode(airplaneItemsShow, 5, 11)
+        } else if (viewMode === 3) {
+            fillterViewMode(airplaneItemsShow, 12, 17)
+        } else if (viewMode === 4) {
+            fillterViewMode(airplaneItemsShow, 18, 23)
+        }
+    }
     $('.orderBy [value=0]').prop('checked', true);
     $('body').on('click', '.orderBy', function() {
         $('.orderBy').prop('checked', false);
@@ -640,20 +728,22 @@
         const begin_place_2_way = $('input[name=begin_place_2_way_hide]').val();
         const end_place_2_way = $('input[name=end_place_2_way_hide]').val();
         const two_way_start_date = $('input[name=two_way_start_date_hide]').val();
-        load_data_flight({
-            orderBy: orderBy,
-            timer: timer,
-            airline_company: airline_company,
-            two_way_adt: two_way_adt,
-            two_way_chd: two_way_chd,
-            two_way_inf: two_way_inf,
-            begin_place_2_way: begin_place_2_way,
-            end_place_2_way: end_place_2_way,
-            two_way_start_date: two_way_start_date,
-            view_mode: view_mode
-        })
+        filterFlight();
+        // load_data_flight({
+        //     orderBy: orderBy,
+        //     timer: timer,
+        //     airline_company: airline_company,
+        //     two_way_adt: two_way_adt,
+        //     two_way_chd: two_way_chd,
+        //     two_way_inf: two_way_inf,
+        //     begin_place_2_way: begin_place_2_way,
+        //     end_place_2_way: end_place_2_way,
+        //     two_way_start_date: two_way_start_date,
+        //     view_mode: view_mode
+        // })
     });
     $('body').on('click', '.airplane-time-flight-item', function() {
+        // $(this).hasClass('active') ? $(this).removeClass('active') : $(this).addClass('active');
         let orderBy;
         $.each($('.orderBy'), function(value, key) {
             if ($(this).is(':checked')) {
@@ -683,21 +773,24 @@
         const begin_place_2_way = $('input[name=begin_place_2_way_hide]').val();
         const end_place_2_way = $('input[name=end_place_2_way_hide]').val();
         const two_way_start_date = $('input[name=two_way_start_date_hide]').val();
-        $('#data_flight').html('');
-        load_data_flight({
-            orderBy: orderBy,
-            timer: timer,
-            airline_company: airline_company,
-            two_way_adt: two_way_adt,
-            two_way_chd: two_way_chd,
-            two_way_inf: two_way_inf,
-            begin_place_2_way: begin_place_2_way,
-            end_place_2_way: end_place_2_way,
-            two_way_start_date: two_way_start_date,
-            view_mode: view_mode
-        })
+        filterFlight();
+        // $('#data_flight').html('');
+        // load_data_flight({
+        //     orderBy: orderBy,
+        //     timer: timer,
+        //     airline_company: airline_company,
+        //     two_way_adt: two_way_adt,
+        //     two_way_chd: two_way_chd,
+        //     two_way_inf: two_way_inf,
+        //     begin_place_2_way: begin_place_2_way,
+        //     end_place_2_way: end_place_2_way,
+        //     two_way_start_date: two_way_start_date,
+        //     view_mode: view_mode
+        // })
     });
     $('body').on('click', '.airline_company', function() {
+        $('.airline_company').prop('checked', false);
+        $(this).prop('checked', true);
         const orderBy = $('.orderBy:checked').val();
         let timer = 0;
         $.each($('.airplane-time-flight-item'), function(value, key) {
@@ -716,19 +809,20 @@
         const begin_place_2_way = $('input[name=begin_place_2_way_hide]').val();
         const end_place_2_way = $('input[name=end_place_2_way_hide]').val();
         const two_way_start_date = $('input[name=two_way_start_date_hide]').val();
-        $('#data_flight').html('');
-        load_data_flight({
-            orderBy: orderBy,
-            timer: timer,
-            airline_company: airline_company,
-            two_way_adt: two_way_adt,
-            two_way_chd: two_way_chd,
-            two_way_inf: two_way_inf,
-            begin_place_2_way: begin_place_2_way,
-            end_place_2_way: end_place_2_way,
-            two_way_start_date: two_way_start_date,
-            view_mode: view_mode
-        })
+        // $('#data_flight').html('');
+        filterFlight();
+        // load_data_flight({
+        //     orderBy: orderBy,
+        //     timer: timer,
+        //     airline_company: airline_company,
+        //     two_way_adt: two_way_adt,
+        //     two_way_chd: two_way_chd,
+        //     two_way_inf: two_way_inf,
+        //     begin_place_2_way: begin_place_2_way,
+        //     end_place_2_way: end_place_2_way,
+        //     two_way_start_date: two_way_start_date,
+        //     view_mode: view_mode
+        // })
     });
     $('body').on('click', '.change_day_flight', function() {
         const orderBy = $(this).val();
