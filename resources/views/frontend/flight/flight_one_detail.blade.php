@@ -149,13 +149,13 @@ $feeLuggage = 100000;
                             <div class="col-sm-12 col-md-12 col-lg-12">
                                 <div class="d-flex align-items-center justify-content-between">
                                     <div class="font-title font-22pt py-3">Thông tin liên hệ</div>
-                                    <label class="d-flex align-items-center font-14pt mb-0">
+                                    <!-- <label class="d-flex align-items-center font-14pt mb-0">
                                         <div class="mr-2">Yêu cầu xuất hóa đơn</div>
                                         <div class="matter-checkbox mb-0">
                                             <input type="checkbox" name="is_vat">
                                             <span></span>
                                         </div>
-                                    </label>
+                                    </label> -->
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-3 col-lg-3">
@@ -373,10 +373,10 @@ $feeLuggage = 100000;
                                         <div>Thuế phí</div>
                                         <div>{{ number_format(($flight->taxAdt + $flight->feeAdt + $flight->serviceFee) * $flight->adt + ($flight->taxChd + $flight->feeChd + $flight->serviceFee) * $flight->chd + ($flight->taxInf + $flight->feeInf + $flight->serviceFee) * $flight->inf, 0, ',', '.') }} VND</div>
                                     </li>
-                                    <li class="list-group-item font-15pt d-flex align-items-center justify-content-between border-0 py-2 px-3 mb-5px">
+                                    <!-- <li class="list-group-item font-15pt d-flex align-items-center justify-content-between border-0 py-2 px-3 mb-5px">
                                         <div>Hành lý / {{ $flight_one->listFareData[0]->listFlight[0]->listSegment[0]->handBaggage }}</div>
                                         <div>{{ number_format($feeLuggage, 0, ',', '.') }} VNĐ</div>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                             <div class="paymanet-info-footer">
@@ -425,6 +425,7 @@ $feeLuggage = 100000;
     });
     $('body').on('click', '.btn-submit', function() {
         let error = 0;
+        let errorInvoice = 0;
         const form = $(this).closest('form');
         const first_name_contact = form.find('input[name=first_name_contact]').val();
         if (checkInput(form, first_name_contact, 'first_name_contact') === 0) error++;
@@ -440,7 +441,20 @@ $feeLuggage = 100000;
         $('.user-info-item').each(function() {
             const gender = $(this).find('select[name=gender] option:selected').val();
         });
+        if ($('input[name=is_vat').is(':checked')) {
+            const tax_code = form.find('input[name=tax_code]').val();
+            if (checkInput(form, tax_code, 'tax_code') === 0) errorInvoice++;
+            const company_name = form.find('input[name=company_name]').val();
+            if (checkInput(form, company_name, 'company_name') === 0) errorInvoice++;
+            const company_address = form.find('input[name=company_address]').val();
+            if (checkInput(form, company_address, 'company_address') === 0) errorInvoice++;
+        }
         if (error !== 0) {
+            $("html,body").animate({
+                scrollTop: $('.airplane-contact-info').offset().top,
+                scrollLeft: 0
+            }, 600);
+        } else if (errorInvoice !== 0) {
             $("html,body").animate({
                 scrollTop: $('.airplane-contact-info').offset().top,
                 scrollLeft: 0
@@ -452,7 +466,7 @@ $feeLuggage = 100000;
                 text: "Bạn chưa chọn phương thức thanh toán",
             });
         } else {
-            if ($('input[name=is_vat').is(':checked')) {
+            if ($('input[name=is_vat]').is(':checked')) {
                 const tax_code = form.find('input[name=tax_code]').val();
                 if (checkInput(form, tax_code, 'tax_code') === 0) error++;
                 const company_name = form.find('input[name=company_name]').val();
