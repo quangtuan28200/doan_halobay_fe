@@ -247,7 +247,7 @@ $feeLuggage = 100000;
                                     <div class="col-sm-12 col-md-3 col-lg-3">
                                         <div class="form-group mb-5px">
                                             <select class="selectpicker form-control h-auto py-12px bg-white" name="gender[]">
-                                                <option>Quý danh</option>
+                                                <option value="0">Quý danh</option>
                                                 <option value="1">Ông</option>
                                                 <option value="2">Bà</option>
                                             </select>
@@ -340,6 +340,13 @@ $feeLuggage = 100000;
                                                 </div>
                                             </div>
                                             <input type="hidden" name="type[]" value="INF">
+                                            <div class="col-sm-12 col-md-6 col-lg-6 hidden">
+                                                <div class="form-group mb-5px">
+                                                    <select class="form-control h-auto py-12px bg-white add_handbags" name="handbags_one[]">
+                                                        <option value="0" data-price="0">Hành lý ký gửi mua thêm</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                         @endfor
                         </div>
