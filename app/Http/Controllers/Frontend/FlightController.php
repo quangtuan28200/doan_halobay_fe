@@ -9,20 +9,21 @@ use App\Services\CallApiSeverService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
 
 class FlightController extends Controller
 {
     public function __construct()
     {
         $list_place_flight = CallApiSeverService::methodGet('tk/client/search-place', [])->cate;
-        //dd ($list_place_flight);
-        \View::share('list_place_flight', $list_place_flight);
+        // dd($list_place_flight);
+        View::share('list_place_flight', $list_place_flight);
     }
 
     public static function __checkUser()
     {
-        $token = \Session::get('token');
-        $email = \Session::get('email');
+        $token = Session::get('token');
+        $email = Session::get('email');
         $user = null;
         if ($email && $token) $user = CallApiSeverService::methodGet('api/app-users/get-profile-by-login', ['login' => $email], $token);
         return $user;
@@ -310,7 +311,7 @@ class FlightController extends Controller
 
     public function get_flight_two_booking(Request $request)
     {
-        //dd($request->all());
+        // dd($request->all());
         $data_one = [
             'session' => $request->form_session,
             'fareDataId' => $request->form_id
@@ -486,7 +487,7 @@ class FlightController extends Controller
 
     public function post_search_flight(Request $request)
     {
-        //dd($request->all());
+        // dd($request->all());
         $info = $request->all();
         $Adt = $request->two_way_adt ? (int) $request->two_way_adt : 1;
         $Chd = $request->way_chd ? (int) $request->way_chd : 0;
@@ -511,8 +512,217 @@ class FlightController extends Controller
             'listFlight' => $ListFlight
         ];
         // dd($data);
-        $list_flight = CallApiSeverService::methodPostJson('api/flights/guest/search', $data);
+        // $list_flight = CallApiSeverService::methodPostJson('api/flights/guest/search', $data);
+        $list_flight = CallApiSeverService::methodPostJson('api/flights/guest/search/oneway', $data);
         // dd($list_flight);
+
+        $data = [
+            "status" => 200,
+            "data" => [
+                "flightType" => "Domestic",
+                "session" => "FAKEDATA",
+                "itinerary" => 1,
+                "listFareData" => [
+                    [
+                        "fareDataId" => 1,
+                        "airline" => "VN",
+                        "leg" => 0,
+                        "adt" => 2,
+                        "chd" => 2,
+                        "inf" => 2,
+                        "fareAdt" => 1500000,
+                        "fareChd" => 750000,
+                        "fareInf" => 100000,
+                        "taxAdt" => 150000,
+                        "taxChd" => 75000,
+                        "taxInf" => 10000,
+                        "feeAdt" => 80000,
+                        "feeChd" => 50000,
+                        "feeInf" => 30000,
+                        "serviceFee" => 100000,
+                        "listFlight" => [
+                            [
+                                "flightId" => 1,
+                                "icon" => "https://plugin.datacom.vn//Resources/Images/Airline/VN.gif",
+                                "airline" => "VN",
+                                "startPoint" => "HAN",
+                                "endPoint" => "SGN",
+                                "airPortStart" => "Nội Bài",
+                                "airPortEnd" => "Tân Sơn Nhất",
+                                "startDate" => "2019-04-09T19:49:45.889Z",
+                                "endDate" => "2019-04-09T20:49:45.890Z",
+                                "flightNumber" => "VN123",
+                                "groupClass" => "Phổ thông",
+                                "flightValue" => "",
+                                "listSegment" => [
+                                    [
+                                        "id" => 1,
+                                        "airline" => "VN",
+                                        "startPoint" => "HAN",
+                                        "endPoint" => "SGN",
+                                        "startTime" => "2019-04-09T19:49:45.889Z",
+                                        "endTime" => "2019-04-09T20:49:45.890Z",
+                                        "flightNumber" => "VN123",
+                                        "plane" => "330",
+                                    ]
+                                ]
+                            ],
+                        ]
+                    ],
+                    [
+                        "fareDataId" => 1,
+                        "airline" => "VJ",
+                        "itinerary" => 1,
+                        "leg" => 0,
+                        "promo" => false,
+                        "currency" => "VND",
+                        "system" => "LCC",
+                        "adt" => 1,
+                        "chd" => 1,
+                        "inf" => 1,
+                        "fareAdt" => 1500000,
+                        "fareChd" => 750000,
+                        "fareInf" => 100000,
+                        "taxAdt" => 150000,
+                        "taxChd" => 75000,
+                        "taxInf" => 10000,
+                        "feeAdt" => 80000,
+                        "feeChd" => 50000,
+                        "feeInf" => 30000,
+                        "serviceFee" => 100000,
+                        "listFlight" => [
+                            [
+                                "icon" => "https://plugin.datacom.vn//Resources/Images/Airline/VJ.gif",
+                                "flightId" => 1,
+                                "leg" => 0,
+                                "airline" => "VJ",
+                                "startPoint" => "HAN",
+                                "endPoint" => "SGN",
+                                "airPortStart" => "Nội Bài",
+                                "airPortEnd" => "Tân Sơn Nhất",
+                                "startDate" => "2019-04-09T19:49:45.889Z",
+                                "endTime" => "2019-04-09T20:49:45.890Z",
+                                "flightNumber" => "VN123",
+                                "stopNum" => 0,
+                                "hasDownStop" => false,
+                                "duration" => 120,
+                                "noRefund" => false,
+                                "groupClass" => "Phổ thông",
+                                "fareClass" => "M",
+                                "promo" => false,
+                                "flightValue" => "",
+                                "listSegment" => [
+                                    [
+                                        "id" => 1,
+                                        "airline" => "VN",
+                                        "startPoint" => "HAN",
+                                        "endPoint" => "SGN",
+                                        "startTime" => "2019-04-09T19:49:45.889Z",
+                                        "endTime" => "2019-04-09T20:49:45.890Z",
+                                        "flightNumber" => "VN123",
+                                        "duration" => 120,
+                                        "class" => "M",
+                                        "plane" => "330",
+                                        "startTerminal" => "T1",
+                                        "endTerminal" => "T2",
+                                        "hasStop" => false,
+                                        "stopPoint" => "",
+                                        "stopTime" => 0,
+                                        "dayChange" => false,
+                                        "stopOvernight" => false,
+                                        "changeStation" => false,
+                                        "changeAirport" => false,
+                                        "lastItem" => true,
+                                        "handBaggage" => "7kg"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
+                        "fareDataId" => 1,
+                        "airline" => "QH",
+                        "itinerary" => 1,
+                        "leg" => 0,
+                        "promo" => false,
+                        "currency" => "VND",
+                        "system" => "LCC",
+                        "adt" => 1,
+                        "chd" => 1,
+                        "inf" => 1,
+                        "fareAdt" => 1500000,
+                        "fareChd" => 750000,
+                        "fareInf" => 100000,
+                        "taxAdt" => 150000,
+                        "taxChd" => 75000,
+                        "taxInf" => 10000,
+                        "feeAdt" => 80000,
+                        "feeChd" => 50000,
+                        "feeInf" => 30000,
+                        "serviceFee" => 100000,
+                        "listFlight" => [
+                            [
+                                "icon" => "https://plugin.datacom.vn//Resources/Images/Airline/QH.gif",
+                                "flightId" => 1,
+                                "leg" => 0,
+                                "airline" => "QH",
+                                "startPoint" => "HAN",
+                                "endPoint" => "SGN",
+                                "airPortStart" => "Nội Bài",
+                                "airPortEnd" => "Tân Sơn Nhất",
+                                "startDate" => "2019-04-09T19:49:45.889Z",
+                                "endTime" => "2019-04-09T20:49:45.890Z",
+                                "flightNumber" => "VN123",
+                                "stopNum" => 0,
+                                "hasDownStop" => false,
+                                "duration" => 120,
+                                "noRefund" => false,
+                                "groupClass" => "Phổ thông",
+                                "fareClass" => "M",
+                                "promo" => false,
+                                "flightValue" => "",
+                                "listSegment" => [
+                                    [
+                                        "id" => 1,
+                                        "airline" => "VN",
+                                        "startPoint" => "HAN",
+                                        "endPoint" => "SGN",
+                                        "startTime" => "2019-04-09T19:49:45.889Z",
+                                        "endTime" => "2019-04-09T20:49:45.890Z",
+                                        "flightNumber" => "VN123",
+                                        "duration" => 120,
+                                        "class" => "M",
+                                        "plane" => "330",
+                                        "startTerminal" => "T1",
+                                        "endTerminal" => "T2",
+                                        "hasStop" => false,
+                                        "stopPoint" => "",
+                                        "stopTime" => 0,
+                                        "dayChange" => false,
+                                        "stopOvernight" => false,
+                                        "changeStation" => false,
+                                        "changeAirport" => false,
+                                        "lastItem" => true,
+                                        "handBaggage" => "7kg"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                "status" => true,
+                "errorCode" => "",
+                "errorValue" => "",
+                "errorField" => "",
+                "message" => "",
+                "language" => "vi-VN",
+            ]
+        ];
+
+        // $json = json_encode($data);
+        // $list_flight = json_decode($json);
+        // dd($list_flight);
+
         $list_place = CallApiSeverService::methodGet('tk/client/search-place', []);
         $lists = [];
         $array = [];
@@ -539,7 +749,14 @@ class FlightController extends Controller
         $user = $this->__checkUser();
         $session = $list_flight->data->session;
         // dd($info);
-        dd($lists, $list_flight, $session, $info, $user);
+        $data = [
+            "lists" => $lists,
+            "list_flight" => $list_flight->data,
+            "session" => $session,
+            "info" => $info,
+            "user" => $user
+        ];
+        // dd($data);
         return view('frontend.flight.list_one_flight', compact('lists', 'list_flight', 'session', 'info', 'user'));
     }
 
@@ -670,14 +887,125 @@ class FlightController extends Controller
 
     public function get_flight_one_booking(Request $request)
     {
-        //dd($request->all());
+        // dd($request->all());
+        // dd(session()->all());
+        $flightId = $request->form_id;
+        $one_flights = $request->session()->all()['one_flights'];
+        $listFlight = $one_flights->listFareData;
+
+        $filteredFlights = array_filter($listFlight, function ($flight) use ($flightId) {
+            return $flight->fareDataId == $flightId;
+        });
+        // dd($listFlight, $flightId, $filteredFlights);
+        $listFareData = array_values($filteredFlights);
+        session()->put('listFareData', $listFareData);
+        $one_flights->listFareData = $listFareData;
+        // dd($one_flights);
         $data_one = [
             'session' => $request->form_session,
             'fareDataId' => $request->form_id
         ];
-        $flight_one = CallApiSeverService::methodGet('api/flights/guest', $data_one);
+        // $flight_one = CallApiSeverService::methodGet('api/flights/guest', $data_one);
+        $flight_one = $one_flights;
+        $data = [
+            "flightType" => "Domestic",
+            "session" => "FAKEDATA",
+            "itinerary" => 1,
+            "listFareData" => [
+                [
+                    "fareDataId" => 1,
+                    "airline" => "VN",
+                    "itinerary" => 1,
+                    "leg" => 0,
+                    "promo" => false,
+                    "currency" => "VND",
+                    "system" => "LCC",
+                    "adt" => 1,
+                    "chd" => 1,
+                    "inf" => 0,
+                    "fareAdt" => 1500000,
+                    "fareChd" => 750000,
+                    "fareInf" => 100000,
+                    "taxAdt" => 150000,
+                    "taxChd" => 75000,
+                    "taxInf" => 10000,
+                    "feeAdt" => 80000,
+                    "feeChd" => 50000,
+                    "feeInf" => 30000,
+                    "serviceFee" => 100000,
+                    "serviceFeeAdt" => 100000,
+                    "serviceFeeChd" => 100000,
+                    "serviceFeeInf" => 100000,
+                    "totalNetPrice" => 1850000,
+                    "totalServiceFee" => 300000,
+                    "totalPrice" => 2150000,
+                    "listFlight" => [
+                        [
+                            "icon" => "https://plugin.datacom.vn//Resources/Images/Airline/VN.gif",
+                            "flightId" => 1,
+                            "leg" => 0,
+                            "airline" => "VN",
+                            "startPoint" => "HAN",
+                            "endPoint" => "SGN",
+                            "startDate" => "2019-04-09T19:49:45.889Z",
+                            "endDate" => "2019-04-09T20:49:45.890Z",
+                            "startDt" => "2019-04-09T19:49:45.889Z",
+                            "endDt" => "2019-04-09T20:49:45.890Z",
+                            "flightNumber" => "VN123",
+                            "stopNum" => 0,
+                            "hasDownStop" => false,
+                            "duration" => 120,
+                            "noRefund" => false,
+                            "groupClass" => "Phổ thông",
+                            "fareClass" => "M",
+                            "promo" => false,
+                            "flightValue" => "",
+                            "listSegment" => [
+                                [
+                                    "id" => 1,
+                                    "airline" => "VN",
+                                    "startPoint" => "HAN",
+                                    "endPoint" => "SGN",
+                                    "startTime" => "2019-04-09T19:49:45.889Z",
+                                    "endTime" => "2019-04-09T20:49:45.890Z",
+                                    "startTm" => "2019-04-09T19:49:45.889Z",
+                                    "endTm" => "2019-04-09T20:49:45.890Z",
+                                    "flightNumber" => "VN123",
+                                    "duration" => 120,
+                                    "class" => "M",
+                                    "plane" => "330",
+                                    "startTerminal" => "T1",
+                                    "endTerminal" => "T2",
+                                    "hasStop" => false,
+                                    "stopPoint" => "",
+                                    "stopTime" => 0,
+                                    "dayChange" => false,
+                                    "stopOvernight" => false,
+                                    "changeStation" => false,
+                                    "changeAirport" => false,
+                                    "lastItem" => true,
+                                    "handBaggage" => "7kg"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+            ],
+            "status" => true,
+            "errorCode" => "",
+            "errorValue" => "",
+            "errorField" => "",
+            "message" => "",
+            "language" => "vi",
+        ];
+
+        // $json = json_encode($data);
+        // $flight_one = json_decode($json);
+
+        // dd($flight_one);
         $flight_one->total_fee_service = ($flight_one->listFareData[0]->taxAdt + $flight_one->listFareData[0]->feeAdt + $flight_one->listFareData[0]->serviceFee) * $flight_one->listFareData[0]->adt + ($flight_one->listFareData[0]->taxChd + $flight_one->listFareData[0]->feeChd + $flight_one->listFareData[0]->serviceFee) * $flight_one->listFareData[0]->chd + ($flight_one->listFareData[0]->taxInf + $flight_one->listFareData[0]->feeInf + $flight_one->listFareData[0]->serviceFee) * $flight_one->listFareData[0]->inf;
         $flight_one->total = ($flight_one->listFareData[0]->fareAdt + $flight_one->listFareData[0]->taxAdt + $flight_one->listFareData[0]->feeAdt + $flight_one->listFareData[0]->serviceFee) * $flight_one->listFareData[0]->adt + ($flight_one->listFareData[0]->fareChd + $flight_one->listFareData[0]->taxChd + $flight_one->listFareData[0]->feeChd + $flight_one->listFareData[0]->serviceFee) * $flight_one->listFareData[0]->chd + ($flight_one->listFareData[0]->fareInf + $flight_one->listFareData[0]->taxInf + $flight_one->listFareData[0]->feeInf + $flight_one->listFareData[0]->serviceFee) * $flight_one->listFareData[0]->inf;
+        $flight_one->listFareData[0]->listFlight[0]->listSegment[0]->handBaggage = "7kg";
         $data_hand_bag_one[] = [
             "AutoIssue" => false,
             "FareDataId" => $request->form_id,
@@ -686,7 +1014,38 @@ class FlightController extends Controller
             ],
             "Session" => $request->form_session
         ];
-        $hand_bag_one = CallApiSeverService::methodGet('api/flights/guest/search-baggage/' . json_encode($data_hand_bag_one), []);
+        // $hand_bag_one = CallApiSeverService::methodGet('api/flights/guest/search-baggage/' . json_encode($data_hand_bag_one), []);
+
+        $data = [
+            "status" => 200,
+            "message" => "",
+            "listBaggage" => [
+                [
+                    "airline" => "VN",
+                    "leg" => 0,
+                    "route" => "HANSGN",
+                    "code" => "HANSGN10",
+                    "currency" => "VND",
+                    "name" => "Gói 10kg",
+                    "price" => 200000,
+                    "value" => "10kg",
+                ],
+                [
+                    "airline" => "VN",
+                    "leg" => 0,
+                    "route" => "HANSGN",
+                    "code" => "HANSGN20",
+                    "currency" => "VND",
+                    "name" => "Gói 20kg",
+                    "price" => 400000,
+                    "value" => "20kg",
+                ]
+            ]
+        ];
+
+        $json = json_encode($data);
+        $hand_bag_one = json_decode($json);
+
         $user = $this->__checkUser();
         $is_background = 1;
         $list_place = CallApiSeverService::methodGet('tk/client/search-place', []);
@@ -705,10 +1064,36 @@ class FlightController extends Controller
                 }
             }
         }
-        $fare_conditions = CallApiSeverService::methodGet('api/guest/condition-price', []);
+        // $fare_conditions = CallApiSeverService::methodGet('api/guest/condition-price', []);
+        $data = [
+            [
+                "id" => 1,
+                "code" => "M1",
+                "conditions" => "<p>dieu kien ve 1</p>",
+                "nameAirline" => "Vietnam Airlines",
+            ],
+            [
+                "id" => 2,
+                "code" => "M2",
+                "conditions" => "<p>dieu kien ve 2</p>",
+                "nameAirline" => "Vietnam Airlines",
+            ]
+        ];
+
+        $json = json_encode($data);
+        $fare_conditions = json_decode($json);
         //dd($flight_one, $hand_bag_one);
+        $data = [
+            'flight_one' => $flight_one,
+            'hand_bag_one' => $hand_bag_one,
+            'user' => $user,
+            'is_background' => $is_background,
+            'lists' => $lists,
+            'fare_conditions' => $fare_conditions
+        ];
+        // dd($data);
         if (true) {
-            return view('frontend.flight.flight_one_detail', compact('flight_one', 'flight_two', 'hand_bag_one', 'user', 'is_background', 'lists', 'fare_conditions'));
+            return view('frontend.flight.flight_one_detail', compact('info', 'flight_one', 'hand_bag_one', 'user', 'is_background', 'lists', 'fare_conditions'));
         } else {
             return abort(404);
         }
@@ -716,6 +1101,8 @@ class FlightController extends Controller
 
     public function book_flight_one(Request $request)
     {
+        // dd($request->all());
+        $fareData = session()->all()['listFareData'][0];
         $ip = $request->ip();
         $listBaggage = [];
         foreach ($request->first_name as $key => $first_name) {
@@ -772,20 +1159,22 @@ class FlightController extends Controller
             "Remark" => "",
             "UseAgentContact" => true,
             "emailLogin" => "",
-            "InvoiceDto" => [
-                "address" =>  $request->company_address ?: "",
-                "cityName" => "",
-                "companyName" => $request->company_name ?: "",
-                "email" => "",
-                "receiver" => "",
-                "taxCode" => $request->tax_code ?: "",
-                "receiverAddress" => "",
-                "receiverMethod" => "",
-                "receiverPhone" => ""
-            ]
+            "Flight" => $fareData
+            // "InvoiceDto" => [
+            //     "address" =>  $request->company_address ?: "",
+            //     "cityName" => "",
+            //     "companyName" => $request->company_name ?: "",
+            //     "email" => "",
+            //     "receiver" => "",
+            //     "taxCode" => $request->tax_code ?: "",
+            //     "receiverAddress" => "",
+            //     "receiverMethod" => "",
+            //     "receiverPhone" => ""
+            // ]
         ];
-        //dd($data);
+        // dd($data);
         $result = CallApiSeverService::methodPostJson('api/flights/guest/book', $data);
+        // dd($result);
         $full_name = $request->first_name_contact . ' ' . $request->last_name_contact;
         $user = $this->__checkUser();
         if ($result->status != 200) {
