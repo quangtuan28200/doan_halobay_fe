@@ -1093,7 +1093,7 @@ class FlightController extends Controller
         ];
         // dd($data);
         if (true) {
-            return view('frontend.flight.flight_one_detail', compact('info', 'flight_one', 'hand_bag_one', 'user', 'is_background', 'lists', 'fare_conditions'));
+            return view('frontend.flight.flight_one_detail', compact('flight_one', 'hand_bag_one', 'user', 'is_background', 'lists', 'fare_conditions'));
         } else {
             return abort(404);
         }
