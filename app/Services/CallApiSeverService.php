@@ -11,7 +11,8 @@ class CallApiSeverService
 {
     // const BASE_URL = "http://103.183.112.72:8085/";
     // const BASE_URL = "http://localhost:8085/";
-    const BASE_URL = "http://103.81.87.23:8085/";
+    // const BASE_URL = "http://103.81.87.23:8085/";
+    const BASE_URL = "https://halobay-api.herokuapp.com/";
 
     public static function methodGet($url, $data = null, $token = null)
     {
