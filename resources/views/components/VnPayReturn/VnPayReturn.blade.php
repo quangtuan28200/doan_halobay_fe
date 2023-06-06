@@ -98,9 +98,18 @@
                 <?php
                 if ($secureHash == $vnp_SecureHash) {
                     if ($_GET['vnp_ResponseCode'] == '00') {
-                        echo "<a href='" . route('book_room_in_hotel_online_payment') . "'><button type='button' class='btn btn-success'>Tiếp tục</button></a>";
+                        switch ($payment_for) {
+                            case 'hotel':
+                                echo "<a href='" . route('book_room_in_hotel_online_payment') . "'><button type='button' class='btn btn-success'>Tiếp tục</button></a>";
+                                break;
+                            case 'flight':
+                                echo "<a href='" . route('book_flight_one_online_payment') . "'><button type='button' class='btn btn-success'>Tiếp tục</button></a>";
+                                break;
+                            default:
+                                break;
+                        }
                     } else {
-                        echo "<a href='" . route('get_book_room') . "'><button type='button' class='btn btn-success'>Quay lại</button></a>";
+                        echo "<a href='" . route('home') . "'><button type='button' class='btn btn-success'>Quay lại</button></a>";
                     }
                 }
                 ?>

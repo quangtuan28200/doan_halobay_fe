@@ -9,6 +9,8 @@ $feeLuggage = 100000;
         <div class="container">
             <form action="{{ route('book_flight_one') }}" method="POST">
                 {{ csrf_field() }}
+                <input type="hidden" name="payment_money" value="{{($flight->fareAdt + $flight->taxAdt + $flight->feeAdt + $flight->serviceFee) * $flight->adt + ($flight->fareChd + $flight->taxChd + $flight->feeChd + $flight->serviceFee) * $flight->chd + ($flight->fareInf + $flight->taxInf + $flight->feeInf + $flight->serviceFee) * $flight->inf}}">
+                <input type="hidden" name="payment_for" value="flight">
                 <div class="font-title font-md-title font-title-bold">Chi tiết đặt vé</div>
                 <div class="dropdown-divider mb-3"></div>
                 <div class="row">
@@ -472,24 +474,31 @@ $feeLuggage = 100000;
                 title: 'Oops...',
                 text: "Bạn chưa chọn phương thức thanh toán",
             });
+        } else if (payment_method == 4) {
+            form.attr('action', "{{ route('init_vnpay_payment') }}");
+            form.submit();
         } else {
-            if ($('input[name=is_vat]').is(':checked')) {
-                const tax_code = form.find('input[name=tax_code]').val();
-                if (checkInput(form, tax_code, 'tax_code') === 0) error++;
-                const company_name = form.find('input[name=company_name]').val();
-                if (checkInput(form, company_name, 'company_name') === 0) error++;
-                const company_address = form.find('input[name=company_address]').val();
-                if (checkInput(form, company_address, 'company_address') === 0) error++;
-            }
-            if (error !== 0) {
-                $("html,body").animate({
-                    scrollTop: $('textarea[name=content]').offset().top,
-                    scrollLeft: 0
-                }, 600);
-            } else {
-                form.submit();
-            }
+            form.submit();
         }
+
+        // else {
+        //     if ($('input[name=is_vat]').is(':checked')) {
+        //         const tax_code = form.find('input[name=tax_code]').val();
+        //         if (checkInput(form, tax_code, 'tax_code') === 0) error++;
+        //         const company_name = form.find('input[name=company_name]').val();
+        //         if (checkInput(form, company_name, 'company_name') === 0) error++;
+        //         const company_address = form.find('input[name=company_address]').val();
+        //         if (checkInput(form, company_address, 'company_address') === 0) error++;
+        //     }
+        //     if (error !== 0) {
+        //         $("html,body").animate({
+        //             scrollTop: $('textarea[name=content]').offset().top,
+        //             scrollLeft: 0
+        //         }, 600);
+        //     } else {
+        //         form.submit();
+        //     }
+        // }
     });
 </script>
 @endsection

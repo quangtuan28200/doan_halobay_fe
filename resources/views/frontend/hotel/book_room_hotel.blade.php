@@ -18,6 +18,7 @@ $dateEndFormated = \Carbon\Carbon::createFromFormat('d/m/Y', $end_date_hotel)->f
         <div class="container">
             <form action="{{ route('book_room_in_hotel') }}" method="POST">
                 {{ csrf_field() }}
+                <input type="hidden" name="payment_for" value="hotel">
                 <div class="font-title font-md-title font-title-bold">Chi tiết đặt phòng</div>
                 <div class="dropdown-divider mb-3"></div>
                 <div class="row">

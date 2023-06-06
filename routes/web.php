@@ -216,6 +216,9 @@ Route::get('flight-one-booking', [
 Route::post('book-flight-one', [
     'uses' => 'Frontend\FlightController@book_flight_one'
 ])->name('book_flight_one');
+Route::get('book-flight-one', [
+    'uses' => 'Frontend\FlightController@book_flight_one'
+])->name('book_flight_one_online_payment');
 // Account
 Route::get('/tai-khoan', [
     'uses' => 'Frontend\AccountController@account_detail'

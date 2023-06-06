@@ -81,6 +81,9 @@ class VNPayController extends Controller
 
     public function vnpay_return()
     {
-        return view('components.VnPayReturn.VnPayReturn');
+        // dd(session()->all());
+        $payment_for = session()->all()['online_payment_info']['payment_for'];
+        // dd($payment_for);
+        return view('components.VnPayReturn.VnPayReturn', compact('payment_for'));
     }
 }

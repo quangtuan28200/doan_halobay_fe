@@ -1102,12 +1102,19 @@ class FlightController extends Controller
     public function book_flight_one(Request $request)
     {
         // dd($request->all());
+        // dd(session()->all(), $request->all());
+        $payment_info = $request->all();
+        $online_payment_success = session()->all()['online_payment_success'] ?? false;
+        // dd($online_payment_success);
+        if (empty($payment_info)) {
+            $payment_info = session()->all()['online_payment_info'];
+        }
         $fareData = session()->all()['listFareData'][0];
         $ip = $request->ip();
         $listBaggage = [];
-        foreach ($request->first_name as $key => $first_name) {
-            if ($request->handbags_one[$key] != "0") {
-                $handbags_one = explode('-', $request->handbags_one[$key]);
+        foreach ($payment_info['first_name'] as $key => $first_name) {
+            if ($payment_info['handbags_one'][$key] != "0") {
+                $handbags_one = explode('-', $payment_info['handbags_one'][$key]);
                 $listBaggage[] = [
                     "Airline" => $handbags_one[0],
                     "Leg" => (int) $handbags_one[1],
@@ -1122,51 +1129,52 @@ class FlightController extends Controller
             $ListPassenger[] = [
                 "Birthday" => "",
                 "FirstName" => $first_name,
-                "Gender" => $request->gender[$key] == '1' ? true : false,
+                "Gender" => $payment_info['gender'][$key] == '1' ? true : false,
                 "Index" => $key,
-                "LastName" => $request->last_name[$key],
-                "Type" => $request->type[$key],
+                "LastName" => $payment_info['last_name'][$key],
+                "Type" => $payment_info['type'][$key],
                 "ListBaggage" => $listBaggage
             ];
         }
         $data = [
             "BookType" => "book-normal",
             "Contact" => [
-                "Gender" => $request->contact_gender == '1' ? true : false,
-                "FirstName" => $request->first_name_contact,
-                "LastName" => $request->last_name_contact,
-                "Phone" => $request->phone_number_contact,
-                "Email" => $request->email_contact,
-                "Address" => $request->address_contact ?: ""
+                "Gender" => $payment_info['contact_gender'] == '1' ? true : false,
+                "FirstName" => $payment_info['first_name_contact'],
+                "LastName" => $payment_info['last_name_contact'],
+                "Phone" => $payment_info['phone_number_contact'],
+                "Email" => $payment_info['email_contact'],
+                "Address" => $payment_info['address_contact'] ?: ""
             ],
             "Ip" => $ip,
             "ListFareData" => [
                 [
                     "AutoIssue" => false,
-                    "FareDataId" => (int) $request->flight_id_one,
+                    "FareDataId" => (int) $payment_info['flight_id_one'],
                     "ListFlight" => [
                         [
-                            "FlightValue" => $request->flight_value_one,
-                            "Leg" => (int) $request->flight_leg_one
+                            "FlightValue" => $payment_info['flight_value_one'],
+                            "Leg" => (int) $payment_info['flight_leg_one']
                         ]
                     ],
-                    "Session" => $request->session
+                    "Session" => $payment_info['session']
                 ]
             ],
             "ListPassenger" => $ListPassenger,
             "Note" => "",
-            "PaymentMethod" => $request->payment_method,
+            "PaymentMethod" => $payment_info['payment_method'],
+            "OnlinePaymentOrderId" => $payment_info['vnp_TxnRef'] ?? null,
             "Remark" => "",
             "UseAgentContact" => true,
             "emailLogin" => "",
             "Flight" => $fareData
             // "InvoiceDto" => [
-            //     "address" =>  $request->company_address ?: "",
+            //     "address" =>  $payment_info['company_address'] ?: "",
             //     "cityName" => "",
-            //     "companyName" => $request->company_name ?: "",
+            //     "companyName" => $payment_info['company_name'] ?: "",
             //     "email" => "",
             //     "receiver" => "",
-            //     "taxCode" => $request->tax_code ?: "",
+            //     "taxCode" => $payment_info['tax_code'] ?: "",
             //     "receiverAddress" => "",
             //     "receiverMethod" => "",
             //     "receiverPhone" => ""
@@ -1175,7 +1183,7 @@ class FlightController extends Controller
         // dd($data);
         $result = CallApiSeverService::methodPostJson('api/flights/guest/book', $data);
         // dd($result);
-        $full_name = $request->first_name_contact . ' ' . $request->last_name_contact;
+        $full_name = $payment_info['first_name_contact'] . ' ' . $payment_info['last_name_contact'];
         $user = $this->__checkUser();
         if ($result->status != 200) {
             return view('frontend.fail', compact('full_name', 'user'));
@@ -1184,6 +1192,7 @@ class FlightController extends Controller
                 return view('frontend.fail', compact('full_name', 'user'));
             } else {
                 return view('frontend.success', compact('full_name', 'user'));
+                session()->flush();
             }
         }
     }
