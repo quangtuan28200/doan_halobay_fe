@@ -54,11 +54,11 @@
                                     </span>
                                 </div>
                                 <label class="matter-textfield-filled select-matter form-control d-block h-auto p-0 mb-0">
-                                    <span>Chọn điểm đến</span>
-                                    <select class="selectpicker form-control h-auto py-12px bg-white" data-live-search="true" name="tour_place_end">
+                                    <span>Khởi hành từ</span>
+                                    <select class="selectpicker form-control h-auto py-12px bg-white" data-live-search="true" name="tour_place_start">
                                         @if ($list_place_tour)
                                         @foreach ($list_place_tour as $place_tour)
-                                        <option value="{{ $place_tour->id }}" @if ($place_tour->id == $info['tour_place_end']) selected @endif>{{ $place_tour->name }}</option>
+                                        <option value="{{ $place_tour->id }}" @if ($place_tour->id == $info['tour_place_start']) selected @endif>{{ $place_tour->name }}</option>
                                         @endforeach
                                         @endif
                                     </select>
@@ -90,11 +90,11 @@
                                     </span>
                                 </div>
                                 <label class="matter-textfield-filled select-matter form-control d-block h-auto p-0 mb-0">
-                                    <span>Khởi hành từ</span>
-                                    <select class="selectpicker form-control h-auto py-12px bg-white" data-live-search="true" name="tour_place_start">
+                                    <span>Chọn điểm đến</span>
+                                    <select class="selectpicker form-control h-auto py-12px bg-white" data-live-search="true" name="tour_place_end">
                                         @if ($list_place_tour)
                                         @foreach ($list_place_tour as $place_tour)
-                                        <option value="{{ $place_tour->id }}" @if ($place_tour->id == $info['tour_place_start']) selected @endif>{{ $place_tour->name }}</option>
+                                        <option value="{{ $place_tour->id }}" @if ($place_tour->id == $info['tour_place_end']) selected @endif>{{ $place_tour->name }}</option>
                                         @endforeach
                                         @endif
                                     </select>
