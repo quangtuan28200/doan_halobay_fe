@@ -71,6 +71,27 @@
                 </nav>
                 <div class="combo-detail-tab-content">
                     <div class="hotelDescription mt-4 pb-3 mb-4" id="hotel-tab-room">
+                        <!-- Button trigger modal -->
+                        <a href="#" data-toggle="modal" data-target="#exampleModal">
+                            <span style="font-weight: 600; color: #2c3d84">{!! $hotel->address !!}</span> - <span style="color: #488bf8;">XEM BẢN ĐỒ</span>
+                        </a>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" style="max-width: 65%;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Khách sạn {{ $hotel->name }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {!! $hotel->map !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="solid">
                         {!! $hotel->description !!}
                     </div>
                     <div class="hotel-benefit-mobile d-xs-block d-sm-block d-md-none d-lg-none d-xl-none"></div>
