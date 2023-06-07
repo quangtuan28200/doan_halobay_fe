@@ -11,9 +11,9 @@
                     <div class="col-sm-12 col-md-12 col-lg-4">
                         <div class="rated-item-hotel-img h-100 position-relative">
                             <img src="{{ asset($hotel->avatarUrl ? $hotel->avatarUrl : \Config::get('constants.IMAGES_DEFAULT.HOTEL.HOTEL_LIST') ) }}" class="img-fluid w-100 object-fit-cover">
-                            <div class="wishlist-icon position-absolute circle-icon-md rounded-circle d-flex align-items-center justify-content-center">
+                            <!-- <div class="wishlist-icon position-absolute circle-icon-md rounded-circle d-flex align-items-center justify-content-center">
                                 <i class="fas fa-heart text-danger icon-wishlist"></i>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-8">
