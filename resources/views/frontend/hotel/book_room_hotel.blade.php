@@ -25,12 +25,12 @@ $dateEndFormated = \Carbon\Carbon::createFromFormat('d/m/Y', $end_date_hotel)->f
                     <div class="col-sm-12 col-md-8 col-lg-9 hotel-booking-info-left">
                         <div class="row combo-detail-info bg-white no-gutters mb-5px">
                             <div class="col-sm-12 col-md-5 col-lg-4">
-                                <img src="{{ asset($hotel->avatarUrl ?: \Config::get('constants.IMAGES_DEFAULT.HOTEL.HOTEL_LIST')) }}" class="img-fluid w-100 object-fit-cover">
+                                <img style="height: 150px" src="{{ asset($hotel->avatarUrl ?: \Config::get('constants.IMAGES_DEFAULT.HOTEL.HOTEL_LIST')) }}" class="img-fluid w-100 object-fit-cover">
                             </div>
                             <div class="col-sm-12 col-md-7 col-lg-8">
                                 <div class="h-100 p-3">
                                     <div class="font-title-bold font-sm-title">{{ $hotel->name }}</div>
-                                    <div class="my-3"><span class="font-title"> Địa chỉ : </span> Thanh Xuân - Hà Nội</div>
+                                    <div class="my-3"><span class="font-title"> Địa chỉ : </span>{{ $hotel->address }}</div>
                                     <div><span class="font-title">Nhận phòng:</span> {{ $dayStart }}, {{ $dateStartFormated }} - Trả phòng : {{ $dayEnd }}, {{ $dateEndFormated }}</div>
                                 </div>
                             </div>
