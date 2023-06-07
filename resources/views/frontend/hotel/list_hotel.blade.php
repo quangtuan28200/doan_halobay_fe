@@ -52,7 +52,10 @@
                                                 </div>
                                                 @endif
                                             </div>
-                                            <div class="mt-n3">{{ $hotel->roomEmpty ? $hotel->roomEmpty : 0 }} còn lại</div>
+                                            <div class="mt-n3">
+                                                {{ $hotel->address }}
+                                            </div>
+                                            <div class="mt-1">{{ $hotel->roomEmpty ? $hotel->roomEmpty : 0 }} còn lại</div>
                                             <div class="tour-booking-short-info">
                                                 <div class="rated-item-hotel-body text-md-right text-xs-right text-sm-right text-lg-right text-xl-right d-md-flex d-lg-flex d-xl-flex align-items-center justify-content-between mb-2">
                                                     <!-- <div class="text-danger font-16pt align-self-end">@if ($hotel->cancelStatus == \Config::get('constants.STATUS_HOTEL.INACTIVE')) Hủy miễn phí @else Hủy mất phí @endif</div> -->
