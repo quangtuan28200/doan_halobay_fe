@@ -139,10 +139,11 @@
                     </div>
                     <div class="card border-0 seaplane-list">
                         <div class="card-header text-center bg-primary-medium text-white px-3 py-2">
-                            <div class="font-title-bold mb-2">
-                                <span class="font-18pt text-uppercase">{{ $place[0]->name }}</span>
+                            <div class="text-center text-white">
+                                <span class="font-18pt text-uppercase font-title">{{ $place[0]->name }}</span>
                                 <img src="{{ asset('frontend/img/seaplane-white.svg') }}" width="20" class="img-fluid mt-n1 mx-3">
-                                <span class="font-18pt text-uppercase">{{ $place[1]->name }}</span>
+                                <span class="font-18pt text-uppercase font-title">{{ $place[1]->name }}</span>
+                                <div class="mt-1">{{ $data['startDateString'] }}</div>
                             </div>
                             <!-- <div>Thứ 5 ngày 21/01/2021, tức 25/11 âm lịch</div> -->
                         </div>
@@ -162,13 +163,13 @@
                                     <table class="seaplane-table-list table mb-0">
                                         <tbody>
                                             @if (count($list_seaplane) > 0)
-                                            @foreach ($list_seaplane as $seaplane)
-                                            <tr class="font-17pt seaplane-item-booking">
+                                            @foreach ($list_seaplane as $index => $seaplane)
+                                            <tr class="font-17pt seaplane-item-booking" index="{{$index}}">
                                                 <td class="p-0 align-middle w-15">
                                                     <img src="{{ asset('frontend/img/seaplane-logo-demo.png') }}" class="img-fluid h-auto">
                                                 </td>
                                                 <td class="text-center align-middle p-0 w-15">{{ $seaplane->code }}</td>
-                                                <td class="font-title-bold text-center align-middle text-primary p-0 w-40 text-nowrap">{{ $seaplane->startTime }} - {{ $seaplane->endTime }}</td>
+                                                <td class="start-date font-title-bold text-center align-middle text-primary p-0 w-40 text-nowrap" start-date-value="{{Carbon\Carbon::parse($seaplane->startTime)->timestamp}}">{{ $seaplane->startTime }} - {{ $seaplane->endTime }}</td>
                                                 <td class="seaplane_price font-title-bold text-center align-middle text-danger p-0 w-15 text-nowrap" data-seaplane-price="{{$seaplane->fareAdt}}">{{ number_format($seaplane->fareAdt, 0, ',', '.') }} đ</td>
                                                 <td class="text-right align-middle py-0 px-1 w-15">
                                                     <a href="{{ route('book_seaplane', ['slug' => $seaplane->id]) }}" class="btn btn-primary-gradient">Chọn</a>
@@ -200,14 +201,26 @@
                                 <div class="font-title-bold font-18pt mb-2">Sắp xếp</div>
                                 <div class="matter-checkbox-item">
                                     <label class="matter-checkbox">
+                                        <input class="orderBy" value="0" type="checkbox" checked>
+                                        <span>Halobay đề xuất</span>
+                                    </label>
+                                </div>
+                                <div class="matter-checkbox-item">
+                                    <label class="matter-checkbox">
                                         <input class="orderBy" value="1" type="checkbox">
-                                        <span>Giá từ thấp đến cao</span>
+                                        <span>Giá từ cao đến thấp</span>
                                     </label>
                                 </div>
                                 <div class="matter-checkbox-item">
                                     <label class="matter-checkbox">
                                         <input class="orderBy" value="2" type="checkbox">
-                                        <span>Giá từ cao đến thấp</span>
+                                        <span>Giá từ thấp đến cao</span>
+                                    </label>
+                                </div>
+                                <div class="matter-checkbox-item">
+                                    <label class="matter-checkbox">
+                                        <input class="orderBy" value="3" type="checkbox">
+                                        <span>Thời gian khởi hành</span>
                                     </label>
                                 </div>
                             </div>
@@ -239,52 +252,44 @@
         }
 
         // sort seaplane by price
-        const rowsInit = $('.seaplane-item-booking');
         $('body').on('click', '.orderBy', function() {
-            const isChecked = $(this).is(':checked');
-            if (!isChecked) {
-                $('.seaplane-table-list tbody').html(rowsInit);
-                return;
-            }
+            $('.orderBy').prop('checked', false);
+            $(this).prop('checked', true);
             const orderBy = parseInt($(this).val());
-            let rows = $('.seaplane-item-booking');
 
-            switch (orderBy) {
-                case 1:
-                    // console.log('sort asc')
-                    rows.sort(function(a, b) {
-                        var priceA = parseFloat($(a).find('.seaplane_price').data('seaplane-price'));
-                        var priceB = parseFloat($(b).find('.seaplane_price').data('seaplane-price'));
+            // Lấy danh sách các chuyến bay
+            const listFlight = $('.seaplane-table-list tbody');
 
-                        if (priceA > priceB) {
-                            return 1;
-                        } else if (priceA < priceB) {
-                            return -1;
-                        } else {
-                            return 0;
-                        }
-                    });
-                    break;
-                case 2:
-                    // console.log('sort desc')
-                    rows.sort(function(a, b) {
-                        var priceA = parseFloat($(a).find('.seaplane_price').data('seaplane-price'));
-                        var priceB = parseFloat($(b).find('.seaplane_price').data('seaplane-price'));
-
-                        if (priceA < priceB) {
-                            return 1;
-                        } else if (priceA > priceB) {
-                            return -1;
-                        } else {
-                            return 0;
-                        }
-                    });
-                    break;
-                default:
-                    break;
+            // Sap xep danh sach
+            if (orderBy === 0) {
+                // Sắp xếp danh sách theo mặc định
+                listFlight.children('.seaplane-item-booking').sort(function(a, b) {
+                    var indexA = $(a).attr('index');
+                    var indexB = $(b).attr('index');
+                    return indexA - indexB;
+                }).appendTo(listFlight);
+            } else if (orderBy === 1) {
+                // Sắp xếp danh sách theo giá vé giảm dần
+                listFlight.children('.seaplane-item-booking').sort(function(a, b) {
+                    var priceA = parseInt($(a).find('.seaplane_price').data('seaplane-price'));
+                    var priceB = parseInt($(b).find('.seaplane_price').data('seaplane-price'));
+                    return priceB - priceA;
+                }).appendTo(listFlight);
+            } else if (orderBy === 2) {
+                // Sắp xếp danh sách theo giá vé tăng dần
+                listFlight.children('.seaplane-item-booking').sort(function(a, b) {
+                    var priceA = parseInt($(a).find('.seaplane_price').data('seaplane-price'));
+                    var priceB = parseInt($(b).find('.seaplane_price').data('seaplane-price'));
+                    return priceA - priceB;
+                }).appendTo(listFlight);
+            } else if (orderBy === 3) {
+                // Sắp xếp danh sách theo thời gian khởi hành
+                listFlight.children('.seaplane-item-booking').sort(function(a, b) {
+                    var timeA = parseInt($(a).find('.start-date').attr('start-date-value'));
+                    var timeB = parseInt($(b).find('.start-date').attr('start-date-value'));
+                    return timeA - timeB;
+                }).appendTo(listFlight);
             }
-
-            $('.seaplane-table-list tbody').html(rows);
         });
 
         // search seaplane by date

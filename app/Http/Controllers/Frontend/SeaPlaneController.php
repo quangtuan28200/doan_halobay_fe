@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Helpers\Amlich;
 use App\Http\Controllers\Controller;
 use App\Services\CallApiSeverService;
 use Carbon\Carbon;
@@ -97,10 +98,12 @@ class SeaPlaneController extends Controller
         $inf = (int) $request->seaplane_childNum2;
         $startPlace = (int) $request->startPlace;
         $startDate = $request->startDate;
+        $startDateFormat = Carbon::createFromFormat('d/m/Y', $request->startDate);
         $endPlace = (int) $request->endPlace;
         $data = [
             'endPlace' => $endPlace,
             'startDate' => $startDate,
+            'startDateString' => 'Ngày ' . $startDateFormat->format('d/m/Y') . ', tức ' . Amlich::convertSolar2Lunar($startDateFormat, 7),
             'startPlace' => $startPlace,
             'adt' => $adt,
             'chd' => $chd,
@@ -123,8 +126,8 @@ class SeaPlaneController extends Controller
         }
         $list_days = $this->list_day($request->startDate);
         $user = $this->__checkUser();
-        //dd($endPlace, $data, $place);
-        return view('frontend.seaplane.list_seaplane', compact('place', 'list_seaplane', 'info', 'user', 'list_days'));
+        // dd($endPlace, $data, $place);
+        return view('frontend.seaplane.list_seaplane', compact('data', 'place', 'list_seaplane', 'info', 'user', 'list_days'));
     }
 
     public function ajax_seaPlane(Request $request)
