@@ -7,11 +7,11 @@
             <div class="col-sm-12 col-md-8 col-lg-9 px-sm-0 px-md-0">
                 <div class="news-detail-content">
                     <h5>{{ $news->title }}</h5>
-                    <div class="news-date-post text-primary">  {{ \Carbon\Carbon::parse($news->createDate)->format('d/m/Y H:s') }}</div>
+                    <div class="news-date-post text-primary"> {{ \Carbon\Carbon::parse($news->createDate)->format('d/m/Y H:s') }}</div>
                     <div class="dropdown-divider"></div>
                     <div class="news-detail-description">
                         <img src="{{ $news->illustrationImage }}" class="img-fluid w-100 mb-3">
-                       {!! $news->content !!}
+                        {!! $news->content !!}
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                     </div>
                     @include('frontend.block.cate_news')
                 </div>
-                <div class="similar-news-container mb-4">
+                <!-- <div class="similar-news-container mb-4">
                     <div class="list-news-main-title font-md-title d-flex align-items-center justify-content-between border-bottom mb-2">
                         <span class="font-title">Tin tức tương tự</span>
                     </div>
@@ -56,7 +56,7 @@
                             </div>
                         </a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
