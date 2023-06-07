@@ -173,6 +173,10 @@
                     <input type="hidden" value="{{ $info['end_place_2_way'] }}" name="end_place_2_way_hide">
                     <input type="hidden" value="{{ $info['way_start_date'] }}" name="two_way_start_date_hide">
                     <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="search-result d-sm-flex d-md-flex d-lg-flex d-xl-flex align-items-center justify-content-between py-3">
+                            <div>{{count($lists[0]['list_flight'])}} Kết quả tìm kiếm</div>
+                            <div>Giá cơ bản cho một người lớn</div>
+                        </div>
                         <div class="list-airplane-container">
                             <div class="list-airplane-header bg-primary text-center text-white py-2 px-3">
                                 <div class="d-flex align-items-center justify-content-center font-title">
