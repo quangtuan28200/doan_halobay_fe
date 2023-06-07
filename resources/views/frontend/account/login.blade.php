@@ -32,13 +32,13 @@
                         </label>
                         <span class="hidden">Bạn chưa nhập mật khẩu</span>
                         <div class="d-flex align-items-center justify-content-between mt-4 mb-3">
-                            <!-- <div class="remember-password-check">
+                            <div class="remember-password-check">
                                 <label class="matter-checkbox">
                                     <input type="checkbox" name="rememberMe">
                                     <span>Ghi nhớ mật khẩu</span>
                                 </label>
-                            </div> -->
-                            <!-- <a href="{{ route('forgot_password') }}" class="text-primary d-block">Quên mật khẩu</a> -->
+                            </div>
+                            <a href="{{ route('forgot_password') }}" class="text-primary d-block">Quên mật khẩu</a>
                         </div>
                         <button type="button" class="btn btn-block btn-primary-gradient font-title font-17pt py-12px">Đăng nhập</button>
                     </form>
