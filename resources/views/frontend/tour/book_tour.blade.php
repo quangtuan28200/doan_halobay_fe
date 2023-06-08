@@ -19,22 +19,22 @@
                                     <div class="font-title-bold font-sm-title">{{ $tour->title }}</div>
                                     <div class="row">
                                         <div class="col-sm-12 col-md-6 col-lg-6 my-3">
-                                            <div><span class="font-title-bold">Ngày khởi hành: </span>{{ $tour->tourPrices[0]->startDate }}</div>
+                                            <div><span class="font-title-bold">Ngày khởi hành: </span>{{ $startDate }}</div>
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6 my-3">
                                             <div><span class="font-title-bold">Nơi khởi hành: </span>{{ $tour->startPlace->name }}</div>
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
-                                            <div><span class="font-title-bold">Ngày kết thúc: </span>{{ $tour->tourPrices[0]->endDate }}</div>
+                                            <div><span class="font-title-bold">Ngày kết thúc: </span>{{ $endDate }}</div>
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
-                                            <div><span class="font-title-bold">Nơi kết thúc: </span>{{ $tour->tourPlace[0]->name }}</div>
+                                            <div><span class="font-title-bold">Nơi kết thúc: </span>{{ $tour->tourPlace[count($tour->tourPlace) - 1]->name }}</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row combo-detail-select-date row-small-space">
+                        <div class="row combo-detail-select-date row-small-space hidden">
                             <div class="col-sm-12 col-md-12 col-lg-12">
                                 <div class="font-title font-22pt py-3">Chọn ngày khởi hành</div>
                             </div>
