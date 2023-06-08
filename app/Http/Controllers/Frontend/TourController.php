@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Services\CallApiSeverService;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Frontend\DateTime;
 
 class TourController extends Controller
 {
@@ -114,13 +115,20 @@ class TourController extends Controller
 
     public function tour_booking($slug)
     {
+        $infoTour = session()->all()['info-tour'];
         $user = $this->__checkUser();
         $data = [
             //'url' => $slug
         ];
         $is_background = 1;
         $tour = CallApiSeverService::methodGet('api/tours/detail/' . $slug, $data);
-        return view('frontend.tour.book_tour', compact('is_background', 'tour', 'user'));
+        $dayNum = $tour->dayNum;
+        $startDate = $infoTour['tour_date'];
+        $tourDate = \DateTime::createFromFormat('d/m/Y', $startDate);
+        $tourDate->modify('+' .  $dayNum . ' days');
+
+        $endDate = $tourDate->format('d/m/Y');
+        return view('frontend.tour.book_tour', compact('startDate', 'endDate', 'is_background', 'tour', 'user'));
     }
 
     public function post_book_tour(Request $request)
