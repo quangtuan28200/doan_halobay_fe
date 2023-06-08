@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <div class="filter-item-container mb-2">
+    <!-- <div class="filter-item-container mb-2">
         <div class="font-title-bold font-18pt mb-2">Điểm đến</div>
         <div class="filter-item-group">
             <div class="font-title-bold text-primary font-18pt mb-2">Du lịch quốc tế</div>
@@ -84,7 +84,7 @@
                 <i style="color: #41A03A" class="fa fa-caret-down mb-1" aria-hidden="true"></i>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="filter-item-container mb-2">
         <div class="filter-item-group">
@@ -134,7 +134,7 @@
         </div>
     </div>
 
-    <div class="filter-item-container mb-2">
+    <!-- <div class="filter-item-container mb-2">
         <div class="filter-item-group">
             <div class="font-title-bold font-18pt mb-2">Hoạt động du lịch</div>
             <div class="collapseWrap">
@@ -155,5 +155,5 @@
                 <i style="color: #41A03A" class="fa fa-caret-down mb-1" aria-hidden="true"></i>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
