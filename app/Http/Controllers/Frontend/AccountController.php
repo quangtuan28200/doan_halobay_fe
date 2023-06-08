@@ -209,11 +209,11 @@ class AccountController extends Controller
         if ($user === 401) {
             return redirect()->route('login');
         } else if ($user->userType === 1) {
-            return view('frontend.account.account_collaborators', compact('user', 'is_background'));
+            return view('frontend.account.account_collaborators', compact('user'));
         } else if ($user->userType === 2) {
-            return view('frontend.account.account_agency', compact('user', 'is_background'));
+            return view('frontend.account.account_agency', compact('user'));
         } else if ($user->userType === 4) {
-            return view('frontend.account.account_normal', compact('user', 'is_background'));
+            return view('frontend.account.account_normal', compact('user'));
         }
     }
 
