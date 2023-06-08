@@ -295,10 +295,10 @@ $rateCount = count($tour->lstFeedback);
         <div class="font-title font-md-title font-title-bold mb-2">{{ $tour->title }}</div>
         <div class="row">
             <div class="col-sm-12 col-md-6 col-lg-6">
-                <div>
+                <!-- <div>
                     <span class="font-title">{{$rateAvg}} / 5</span>
                     <span class="ml-2">({{$rateCount}} đánh giá)</span>
-                </div>
+                </div> -->
             </div>
             <div class="col-sm-12 col-md-6 col-lg-6 text-md-right text-lg-right text-xl-right">
                 <div>
@@ -348,11 +348,6 @@ $rateCount = count($tour->lstFeedback);
                     <h5 class="font-sm-title font-title-bold mb-4">Tổng quan Tour</h5>
                     <div class="tour_description box-shadow">
                         <div class="bg-white p-3 mb-1">
-                            <p class="mb-0">
-                                {{ $tour->shortContent }}
-                            </p>
-                        </div>
-                        <div class="bg-white p-3 mb-1">
                             {!! $tour->content !!}
                         </div>
                     </div>
@@ -376,7 +371,7 @@ $rateCount = count($tour->lstFeedback);
                     </div>
                     @endforeach
                 </div>
-                <div class="tab-content-item mb-4">
+                <!-- <div class="tab-content-item mb-4">
                     <h5 class="font-sm-title font-title-bold mb-4">Bảng giá</h5>
                     <div class="table-responsive">
                         <table class="table table-bordered bg-white">
@@ -398,16 +393,16 @@ $rateCount = count($tour->lstFeedback);
                                 </tr>
                                 @endforeach
                             </tbody>
-                            <!-- <tfoot>
-                                    <tr>
-                                        <td class="text-right" colspan="3">Tổng giá</td>
-                                        <td class="font-title text-success text-nowrap">3.000.000 VNĐ</td>
-                                    </tr>
-                                </tfoot> -->
+                            <tfoot>
+                                <tr>
+                                    <td class="text-right" colspan="3">Tổng giá</td>
+                                    <td class="font-title text-success text-nowrap">3.000.000 VNĐ</td>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
-                </div>
-                <div class="tab-content-item mb-4">
+                </div> -->
+                <!-- <div class="tab-content-item mb-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h5 class="font-sm-title font-title-bold mb-0">Đánh giá</h5>
                         <button class="btn bg-transparent p-0 border-0 text-primary view-rated-sidebar">Xem thêm</button>
@@ -439,7 +434,7 @@ $rateCount = count($tour->lstFeedback);
                         @endforeach
                         @endif
                     </div>
-                </div>
+                </div> -->
                 <!-- <div class="tab-content-item mb-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h5 class="font-sm-title font-title-bold mb-0">Hỏi đáp</h5>
