@@ -10,11 +10,11 @@ use GuzzleHttp\Psr7;
 class CallApiSeverService
 {
     // const BASE_URL = "http://103.183.112.72:8085/";
-    // const BASE_URL = "http://localhost:8085/";
+    const BASE_URL = "http://localhost:8085/";
     // const BASE_URL = "http://103.81.87.23:8085/";
     // const BASE_URL = "https://halobay-api.herokuapp.com/";
-    const BASE_URL = "https://doanhalobaybe-production.up.railway.app/";
-    
+    // const BASE_URL = "https://doanhalobaybe-production.up.railway.app/";
+
 
     public static function methodGet($url, $data = null, $token = null)
     {
