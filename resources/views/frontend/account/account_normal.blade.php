@@ -9,7 +9,7 @@
         display: none;
     }
 </style>
-<div class="account-menu container py-5">
+<!-- <div class="account-menu container py-5">
     <div class="row row-medium-space ">
         <div class="col">
             <a href="account-info.html" class="account-menu-item font-title text-center text-decoration-none d-block radius-sm px-2 py-12px active">Tài khoản của tôi</a>
@@ -17,7 +17,7 @@
         <div class="col">
             <a href="history-booking-hotel.html" class="account-menu-item font-title text-center text-decoration-none d-block radius-sm px-2 py-12px">Lịch sử đặt</a>
         </div>
-        <!-- <div class="col">
+        <div class="col">
             <a href="account-wishlist.html" class="account-menu-item font-title text-center text-decoration-none d-block radius-sm px-2 py-12px">Yêu thích</a>
         </div>
         <div class="col">
@@ -25,9 +25,9 @@
         </div>
         <div class="col">
             <a href="account-question-answer.html" class="account-menu-item font-title text-center text-decoration-none d-block radius-sm px-2 py-12px">Bài hỏi đáp của tôi</a>
-        </div> -->
+        </div>
     </div>
-</div>
+</div> -->
 <section class="account-info">
     <div class="container">
         <div class="row">
